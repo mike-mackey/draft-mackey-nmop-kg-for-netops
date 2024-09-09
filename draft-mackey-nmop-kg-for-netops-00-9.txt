@@ -132,7 +132,11 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
      12.2.  Informative References (to be included)  . . . . . . . .  19
    13. Normative References  . . . . . . . . . . . . . . . . . . . .  19
    Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  21
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  21
+   Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  21
+   Appendix C.  Resource Description Framework (RDF) schema  . . . .  21
+   Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)  . .  22
+   Appendix E.  RESULT . . . . . . . . . . . . . . . . . . . . . . .  22
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Introduction
 
@@ -158,10 +162,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    The new set of requirements will hopefully guide the Operational and
    Management Area (OPS) https://datatracker.ietf.org/group/ops/about/
    future directions.
-
-
-
-
 
 
 
@@ -484,11 +484,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    with a simple CLI command: “show ip interface” for basic interface
    information.
 
-   *  How to map with interface concept with the syslog message, where
-      the syslog message might not have the exact same interface id
-      (Gigabit Ethernet versus gigE versus gigEthernet … X/Y.Z as an
-      example) for a machine to read.
-
    *  Between MIB module and YANG model, fortunately, we have the same
       ifIndex concept (ifIndex in MIB and if-index in YANG).  This
       facilitates the mapping.
@@ -498,6 +493,11 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
       flow record, the interface semantic changed: we have one specific
       field for the ingress and another one for egress traffic.  The MIB
       object ifIndex doesn’t make that distinction.  While it’s not
+      difficult to map the IPFIX interface information elements with the
+      MIB and YANG interface ones, the different semantic must be
+      hardcoded in the NMS.
+
+
 
 
 
@@ -506,14 +506,15 @@ Mackey, et al.            Expires 13 March 2025                 [Page 9]
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
 
-      difficult to map the IPFIX interface information elements with the
-      MIB and YANG interface ones, the different semantic must be
-      hardcoded in the NMS.
-
    *  Now, to take protocols from the AAA world, TACACS+ and RADIUS
       interfaces are called “ports” to use the right terminology.  Those
       have nothing to do with the networking ifIndex definitions, even
       if it’s perfectly fine to host TACACS+ or RADIUS in routers.
+
+   *  How to map with interface concept with the syslog message, where
+      the syslog message might not have the exact same interface id
+      (Gigabit Ethernet versus gigE versus gigEthernet … X/Y.Z as an
+      example) for a machine to read.
 
    Right now, these concepts is known inside of network engineer heads,
    their network domain knowledge, but how to convey this information to
@@ -553,7 +554,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    This is the key to moving from Automation to Autonomy and we believe
    one of the keys to unlocking autonomy is to leverage Knowledge
    Engineering and Knowledge Based Systems (KBS)
-
 
 
 
@@ -1153,6 +1153,68 @@ Appendix A.  Acknowledgments
    The authors would like to thank Peter Cautley and Anatolii Pererva
    for providing the appendix example.
 
+Appendix B.  Appendix
+
+Appendix C.  Resource Description Framework (RDF) schema
+
+   The RDF Schema defines the different types of relationship (RDF
+   properties).  They are defined hierarchically.  That allows specific
+   relationships to be grouped as more generalized relationships.
+   Queries can be applied at different levels of specificity.
+
+   :ipfixRefersTo a rdf:Property ; rdfs:comment "IPFIX reference to a
+   leaf" ; rdfs:subPropertyOf :refersTo .
+
+   :ipfixRefersToInterface a rdf:Property ; rdfs:comment "IPFIX
+   reference to a leaf" ; rdfs:subPropertyOf :ipfixRefersTo .
+
+
+
+
+
+
+Mackey, et al.            Expires 13 March 2025                [Page 21]
+
+Internet-Draft           Knowledge Graph NetOps           September 2024
+
+
+Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)
+
+   SPARQL finds different relationships that exist between data sources
+   e.g.  The relationship "ipfixRefersToInterface" (defined in the RDF
+   schema) will find relationships between any IPFIX data field and the
+   Device Interface.  A more generalized relationship "ipfixRefersTo"
+   would find all known relationships between IPFIX and Device
+   (underlay, overlay) Configuration.
+
+   PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
+   (http://www.w3.org/2000/01/rdf-schema#) PREFIX yang:
+   http://localhost/yang# (http://localhost/yang#) SELECT ?source_path
+   ?relationship ?target_path WHERE { ?source ?relationship ?target .
+   ?relationship rdfs:subPropertyOf* yang:ipfixRefersToInterface .
+   ?source yang:path ?source_path .  ?target yang:path ?target_path . }
+
+Appendix E.  RESULT
+
+   The result for the above query shows - the source: IPFIX fields
+   aligned with IANA "IP Flow Information Export (IPFIX) Entities" -
+   ingressInterface element Id 10 - egressInterface element Id 14 - the
+   type of relationship: (specified in the RDF schema) - the target:
+   YANG path specified in Device Configuration
+
+   +-------------------------------+------------------------------------
+   -------------+----------------------------------+ | source |
+   relationship | target | +-------------------------------+------------
+   -------------------------------------+-------------------------------
+   ---+ | "ingressInterface" | http://localhost/
+   yang#ipfixRefersToInterface (http://localhost/
+   yang#ipfixRefersToInterface) | "ifm/interfaces/interface/index" | |
+   "egressInterface" | http://localhost/yang#ipfixRefersToInterface
+   (http://localhost/yang#ipfixRefersToInterface) |
+   "ifm/interfaces/interface/index" | +-------------------------------+-
+   ------------------------------------------------+--------------------
+   --------------+
+
 Authors' Addresses
 
    Michael Mackey
@@ -1165,19 +1227,18 @@ Authors' Addresses
    Email: benoit.claise@huawei.com
 
 
+
+
+Mackey, et al.            Expires 13 March 2025                [Page 22]
+
+Internet-Draft           Knowledge Graph NetOps           September 2024
+
+
    Thomas Graf
    Swisscom
    Binring 17
    CH-8045 Zurich
    Switzerland
-
-
-
-Mackey, et al.            Expires 13 March 2025                [Page 21]
-
-Internet-Draft           Knowledge Graph NetOps           September 2024
-
-
    Email: thomas.graf@swisscom.com
 
 
@@ -1224,9 +1285,4 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
 
 
 
-
-
-
-
-
-Mackey, et al.            Expires 13 March 2025                [Page 22]
+Mackey, et al.            Expires 13 March 2025                [Page 23]

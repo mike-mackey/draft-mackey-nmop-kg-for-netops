@@ -328,10 +328,6 @@ To make it crystal clear, let’s illustrate this with a very simple and
 well known networking concept: a simple interface. Let’s start with a
 simple CLI command: “show ip interface” for basic interface information.
 
-- How to map with interface concept with the syslog message, where the
-  syslog message might not have the exact same interface id (Gigabit
-  Ethernet versus gigE versus gigEthernet … X/Y.Z as an example) for a
-  machine to read.
 
 - Between MIB module and YANG model, fortunately, we have the same
   ifIndex concept (ifIndex in MIB and if-index in YANG). This
@@ -349,6 +345,11 @@ simple CLI command: “show ip interface” for basic interface information.
   interfaces are called “ports” to use the right terminology. Those have
   nothing to do with the networking ifIndex definitions, even if it’s
   perfectly fine to host TACACS+ or RADIUS in routers.
+
+- How to map with interface concept with the syslog message, where the
+  syslog message might not have the exact same interface id (Gigabit
+  Ethernet versus gigE versus gigEthernet … X/Y.Z as an example) for a
+  machine to read.
 
 Right now, these concepts is known inside of network engineer heads, 
 their network domain knowledge, but how to convey this information to a
@@ -764,5 +765,52 @@ This document has no actions for IANA.
 # Acknowledgments
 
 The authors would like to thank Peter Cautley and Anatolii Pererva for providing the appendix example.
+
+# Appendix
+
+
+# Resource Description Framework (RDF) schema
+
+The RDF Schema defines the different types of relationship (RDF properties). They are defined hierarchically. That allows specific relationships to be grouped as more generalized relationships. Queries can be applied at different levels of specificity.
+
+:ipfixRefersTo a rdf:Property ;
+    rdfs:comment "IPFIX reference to a leaf" ;
+    rdfs:subPropertyOf :refersTo .
+
+:ipfixRefersToInterface a rdf:Property ;
+    rdfs:comment "IPFIX reference to a leaf" ;
+    rdfs:subPropertyOf :ipfixRefersTo .
+
+
+# SPARQL Protocol and RDF Query Language (SPARQL)
+
+SPARQL finds different relationships that exist between data sources e.g. The relationship "ipfixRefersToInterface" (defined in the RDF schema) will find relationships between any IPFIX data field and the Device Interface. A more generalized relationship "ipfixRefersTo" would find all known relationships between IPFIX and Device (underlay, overlay) Configuration. 
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX yang: <http://localhost/yang#>
+SELECT ?source_path ?relationship ?target_path
+WHERE {
+  ?source ?relationship ?target .
+  ?relationship rdfs:subPropertyOf* yang:ipfixRefersToInterface .
+  ?source yang:path ?source_path .
+  ?target yang:path ?target_path .
+}
+
+
+# RESULT
+
+The result for the above query shows 
+- the source: IPFIX fields aligned with IANA "IP Flow Information Export (IPFIX) Entities"
+  - ingressInterface element Id 10
+  - egressInterface element Id 14
+- the type of relationship: (specified in the RDF schema)
+- the target: YANG path specified in Device Configuration
+
++-------------------------------+-------------------------------------------------+----------------------------------+
+| source                        | relationship                                    | target                           |
++-------------------------------+-------------------------------------------------+----------------------------------+
+| "ingressInterface"            | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
+| "egressInterface"             | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
++-------------------------------+-------------------------------------------------+----------------------------------+
 
 {:numbered="false"}
