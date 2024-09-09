@@ -216,8 +216,8 @@ What is the network intent? Is it owned in the controller, or the
 current network is the network intent? What if the network is configured
 at the same time from the controller and from the CLI (for quick network
 anomaly resolution), does it imply that the network intent is partially
-in the controller, and partially in the network state? There are
-actually multiple sources of truth in networking:
+in the controller, and partially in the network state? There are actually 
+multiple sources of truth in networking:
 
 - the controller configuration (intended state)
 
@@ -763,6 +763,6 @@ This document has no actions for IANA.
 
 # Acknowledgments
 
-The authors would like to thank Peter Cautley and Anatolii Pererva for providing the appendix examples.
+The authors would like to thank Peter Cautley and Anatolii Pererva for providing the appendix example.
 
 {:numbered="false"}
