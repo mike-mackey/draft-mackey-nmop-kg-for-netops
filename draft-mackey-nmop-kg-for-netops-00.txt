@@ -77,14 +77,14 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Challenges  . . . . . . . . . . . . . . . . . . . . . . . . .   4
      2.1.  Data Overload from Network Operations . . . . . . . . . .   4
-     2.2.  Difficulties in Data Analysis and Insight Extraction  . .   4
+     2.2.  Difficulties in Data Analysis and Insight Extraction  . .   5
      2.3.  Complex Data Correlation Requirements . . . . . . . . . .   5
      2.4.  Service and Customer Correlation  . . . . . . . . . . . .   5
      2.5.  Data Storage and Format Disparities . . . . . . . . . . .   5
      2.6.  Contextual Understanding and Relationship Mapping . . . .   6
      2.7.  Loss of Context in Data Collection  . . . . . . . . . . .   6
      2.8.  Data Collection Methods and Interpretation  . . . . . . .   6
-     2.9.  Organizational Silos  . . . . . . . . . . . . . . . . . .   6
+     2.9.  Organizational Silos  . . . . . . . . . . . . . . . . . .   7
      2.10. Multiple Sources of Truths  . . . . . . . . . . . . . . .   7
      2.11. Machine Readable Knowledge  . . . . . . . . . . . . . . .   7
    3.  IETF Initiatives  . . . . . . . . . . . . . . . . . . . . . .   7
@@ -130,7 +130,9 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    12. Reference . . . . . . . . . . . . . . . . . . . . . . . . . .  19
      12.1.  Normative References . . . . . . . . . . . . . . . . . .  19
      12.2.  Informative References (to be included)  . . . . . . . .  19
-   13. Normative References  . . . . . . . . . . . . . . . . . . . .  19
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  19
+     13.2.  Informative References . . . . . . . . . . . . . . . . .  19
    Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  21
    Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  21
    Appendix C.  Resource Description Framework (RDF) schema  . . . .  21
@@ -155,13 +157,11 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    [RFC7950], RESTCONF [RFC8040], and most recently CORECONF
    [I-D.ietf-core-comi].
 
-   A new IAB workshop, Next Era of Network Management Operations
-   (NEMOPS), is getting organized to tackle the next big challenges in
-   the world of network management.  Exactly like the previous
-   workshops, operator challenges and requirements will be documented.
-   The new set of requirements will hopefully guide the Operational and
-   Management Area (OPS) https://datatracker.ietf.org/group/ops/about/
-   future directions.
+
+
+
+
+
 
 
 
@@ -170,16 +170,24 @@ Mackey, et al.            Expires 14 March 2025                 [Page 3]
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
 
+   A new IAB workshop, Next Era of Network Management Operations
+   (NEMOPS), is getting organized to tackle the next big challenges in
+   the world of network management.  Exactly like the previous
+   workshops, operator challenges and requirements will be documented.
+   The new set of requirements will hopefully guide the Operational and
+   Management Area (OPS) https://datatracker.ietf.org/group/ops/about/
+   future directions.
+
    This document describes the challenges in network operations, and
    proposes a new framework based on knowledge graph, to solve (some of)
    those operational challenges, mainly how to automatically assure
    networks.
 
    As an introduction, let's review the difference between information
-   model and data model.  Quoting RFC 3444, "The main purpose of an
-   information model is to model managed objects at a conceptual level,
-   independent of any specific implementations or protocols used to
-   transport the data.  The degree of specificity (or detail) of the
+   model and data model.  Quoting RFC 3444 [RFC3444], "The main purpose
+   of an information model is to model managed objects at a conceptual
+   level, independent of any specific implementations or protocols used
+   to transport the data.  The degree of specificity (or detail) of the
    abstractions defined in the information model depends on the modeling
    needs of its designers.  In order to make the overall design as clear
    as possible, an information model should hide all protocol and
@@ -210,14 +218,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    The sheer volume of data is staggering, making it challenging even
    for advanced computer systems to process and analyze effectively.
 
-2.2.  Difficulties in Data Analysis and Insight Extraction
-
-   Data analysts with network domain knowledge play a crucial role in
-   leveraging this data to predict faults, perform Root Cause Analysis
-   (RCA), and implement automatic remediation.  However, they often
-   struggle to extract useful information due to the overwhelming
-   volume, data standardization and complexity of the data.  The
-   challenge lies not only in processing the data but also in finding
 
 
 
@@ -226,6 +226,14 @@ Mackey, et al.            Expires 14 March 2025                 [Page 4]
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
 
+2.2.  Difficulties in Data Analysis and Insight Extraction
+
+   Data analysts with network domain knowledge play a crucial role in
+   leveraging this data to predict faults, perform Root Cause Analysis
+   (RCA), and implement automatic remediation.  However, they often
+   struggle to extract useful information due to the overwhelming
+   volume, data standardization and complexity of the data.  The
+   challenge lies not only in processing the data but also in finding
    meaningful patterns and correlations that can derive actionable
    insights.
 
@@ -266,14 +274,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    sometime different schemas for a specific data model languages
    (typically YANG models), which are sometimes different per router
    vendors, often siloed in different applications and storage
-   platforms.  Establishing relationships between this data, especially
-   when disconnected from the service context and original intent, is
-   exceedingly difficult.  This fragmentation hinders the ability to
-   maintain a cohesive understanding of network operations and their
-   impacts on service quality.
-
-
-
 
 
 
@@ -281,6 +281,12 @@ Mackey, et al.            Expires 14 March 2025                 [Page 5]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   platforms.  Establishing relationships between this data, especially
+   when disconnected from the service context and original intent, is
+   exceedingly difficult.  This fragmentation hinders the ability to
+   maintain a cohesive understanding of network operations and their
+   impacts on service quality.
 
 2.6.  Contextual Understanding and Relationship Mapping
 
@@ -318,13 +324,7 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    computes this data is vital for accurate analysis and
    troubleshooting.
 
-2.9.  Organizational Silos
 
-   In many organizations, network configuration and operations teams
-   function as separate entities.  This division can lead to a
-   disconnect where the rationale behind network changes is lost or
-   miscommunicated between teams.  This lack of cohesion can further
-   complicate data correlation and analysis efforts.
 
 
 
@@ -337,6 +337,14 @@ Mackey, et al.            Expires 14 March 2025                 [Page 6]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+2.9.  Organizational Silos
+
+   In many organizations, network configuration and operations teams
+   function as separate entities.  This division can lead to a
+   disconnect where the rationale behind network changes is lost or
+   miscommunicated between teams.  This lack of cohesion can further
+   complicate data correlation and analysis efforts.
 
 2.10.  Multiple Sources of Truths
 
@@ -378,6 +386,14 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
 
    *  Service Assurance for Intent Based Networking [RFC9417] [RFC9418]
 
+
+
+
+Mackey, et al.            Expires 14 March 2025                 [Page 7]
+
+Internet-Draft           Knowledge Graph NetOps           September 2024
+
+
    *  Network Telemetry framework [RFC9232] explains the different
       telemetry mechanisms
 
@@ -386,13 +402,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
       broker-integration/)
       specifies an Architecture for YANG-Push to Message Broker
       Integration is helping with the data collection aspects.
-
-
-
-Mackey, et al.            Expires 14 March 2025                 [Page 7]
-
-Internet-Draft           Knowledge Graph NetOps           September 2024
-
 
    *  draft-ietf-opsawg-collected-data-manifest
       (https://datatracker.ietf.org/doc/draft-ietf-opsawg-collected-
@@ -433,15 +442,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI,
    Assurance is mapped to existing assurance and collection models (data
    collection/message broker/TSDBs), existing health assurance
-   pipelines.  If I onboard a new device will it work with my data
-   processing pipeline If I receive observe a problem in my service, can
-   I trace quickly to find the related network configuration, if I
-   decide I need to modify that network configuration do I know the
-   values that must change at the resource API in order for it to
-   happen.
-
-
-
 
 
 
@@ -449,6 +449,13 @@ Mackey, et al.            Expires 14 March 2025                 [Page 8]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   pipelines.  If I onboard a new device will it work with my data
+   processing pipeline If I receive observe a problem in my service, can
+   I trace quickly to find the related network configuration, if I
+   decide I need to modify that network configuration do I know the
+   values that must change at the resource API in order for it to
+   happen.
 
    On the other side, with different technology domains and different
    protocols, come different data models.  In order to assure cross
@@ -491,13 +498,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    *  In the context of IPFIX models, even if the ingressInterface and
       egressInterface report the famous ifIndex values within the flow
       record, the interface semantic changed.  We have one specific
-      field for the ingress and another one for egress traffic.  The MIB
-      object ifIndex doesn't make that distinction.  While it's not
-      difficult to map the IPFIX interface information elements with the
-      MIB and YANG interface ones, the different semantic must be
-      hardcoded in the NMS.
-
-
 
 
 
@@ -505,6 +505,12 @@ Mackey, et al.            Expires 14 March 2025                 [Page 9]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+      field for the ingress and another one for egress traffic.  The MIB
+      object ifIndex doesn't make that distinction.  While it's not
+      difficult to map the IPFIX interface information elements with the
+      MIB and YANG interface ones, the different semantic must be
+      hardcoded in the NMS.
 
    *  For the protocols from the AAA world, TACACS+ and RADIUS
       interfaces are called "ports" to use the right terminology.  Those
@@ -546,13 +552,7 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    provide a way to define and query those relationships in a manner
    that could instantly answer all the questions that an operator has.
 
-   What if we could provide this information not only in a format the
-   operator can understand but in a way a machine can easily interpret
-   and make decisions.
 
-   This is the key to moving from Automation to Autonomy and we believe
-   one of the keys to unlocking autonomy is to leverage Knowledge
-   Engineering and Knowledge Based Systems (KBS)
 
 
 
@@ -561,6 +561,14 @@ Mackey, et al.            Expires 14 March 2025                [Page 10]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   What if we could provide this information not only in a format the
+   operator can understand but in a way a machine can easily interpret
+   and make decisions.
+
+   This is the key to moving from Automation to Autonomy and we believe
+   one of the keys to unlocking autonomy is to leverage Knowledge
+   Engineering and Knowledge Based Systems (KBS)
 
 4.1.  The Limits of YANG as THE Model Language
 
@@ -602,14 +610,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    *  *Explicit Representation*: Knowledge is represented in a way that
       can be easily interpreted and processed by the system.
 
-   *  *Structured Data*: Information is organized in a structured
-      format, such as rules, facts, and relationships.
-
-   *  *Rich Semantics*: The knowledge base captures not only raw data
-      but also the meaning and context of that data.
-
-
-
 
 
 
@@ -617,6 +617,12 @@ Mackey, et al.            Expires 14 March 2025                [Page 11]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   *  *Structured Data*: Information is organized in a structured
+      format, such as rules, facts, and relationships.
+
+   *  *Rich Semantics*: The knowledge base captures not only raw data
+      but also the meaning and context of that data.
 
 5.2.  Inference Engine
 
@@ -660,12 +666,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    of knowledge within their domain and adapt to new information.  This
    includes:
 
-   *  *Extensibility*: The ability to add new knowledge and rules to the
-      system as the domain evolves.
-
-   *  *Adaptability*: The capability to update and refine the knowledge
-      base based on new insights or changes in the environment.
-
 
 
 
@@ -673,6 +673,12 @@ Mackey, et al.            Expires 14 March 2025                [Page 12]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   *  *Extensibility*: The ability to add new knowledge and rules to the
+      system as the domain evolves.
+
+   *  *Adaptability*: The capability to update and refine the knowledge
+      base based on new insights or changes in the environment.
 
    *  *Integration*: Combining knowledge from multiple sources to
       provide a holistic understanding of the domain.
@@ -716,12 +722,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    properties (relationships) within your domain knowledge using
    rdfs:domain and rdfs:range.  This allows for a more structured and
    meaningful representation of data.
-
-
-
-
-
-
 
 
 
@@ -1027,7 +1027,21 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
 
    *  SHACL - Shapes Constraint Language.  W3C Recommendation, 2017.
 
-13.  Normative References
+13.  References
+
+13.1.  Normative References
+
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/rfc/rfc7011>.
+
+   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
+              RFC 7950, DOI 10.17487/RFC7950, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7950>.
+
+13.2.  Informative References
 
    [I-D.havel-nmop-digital-map]
               Havel, O., Claise, B., de Dios, O. G., Elhassany, A., and
@@ -1044,6 +1058,14 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
               23 July 2024, <https://datatracker.ietf.org/doc/html/
               draft-ietf-core-comi-18>.
 
+
+
+
+Mackey, et al.            Expires 14 March 2025                [Page 19]
+
+Internet-Draft           Knowledge Graph NetOps           September 2024
+
+
    [I-D.netana-nmop-network-anomaly-lifecycle]
               Riccobene, V., Roberto, A., Graf, T., Du, W., and A. H.
               Feng, "Experiment: Network Anomaly Lifecycle", Work in
@@ -1057,18 +1079,14 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
               RFC 2865, DOI 10.17487/RFC2865, June 2000,
               <https://www.rfc-editor.org/rfc/rfc2865>.
 
-
-
-
-
-Mackey, et al.            Expires 14 March 2025                [Page 19]
-
-Internet-Draft           Knowledge Graph NetOps           September 2024
-
-
    [RFC3164]  Lonvick, C., "The BSD Syslog Protocol", RFC 3164,
               DOI 10.17487/RFC3164, August 2001,
               <https://www.rfc-editor.org/rfc/rfc3164>.
+
+   [RFC3444]  Pras, A. and J. Schoenwaelder, "On the Difference between
+              Information Models and Data Models", RFC 3444,
+              DOI 10.17487/RFC3444, January 2003,
+              <https://www.rfc-editor.org/rfc/rfc3444>.
 
    [RFC3535]  Schoenwaelder, J., "Overview of the 2002 IAB Network
               Management Workshop", RFC 3535, DOI 10.17487/RFC3535, May
@@ -1089,29 +1107,11 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
               <https://www.rfc-editor.org/rfc/rfc6241>.
 
-   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
-              "Specification of the IP Flow Information Export (IPFIX)
-              Protocol for the Exchange of Flow Information", STD 77,
-              RFC 7011, DOI 10.17487/RFC7011, September 2013,
-              <https://www.rfc-editor.org/rfc/rfc7011>.
-
    [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
               Monitoring Protocol (BMP)", RFC 7854,
               DOI 10.17487/RFC7854, June 2016,
               <https://www.rfc-editor.org/rfc/rfc7854>.
 
-   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
-              RFC 7950, DOI 10.17487/RFC7950, August 2016,
-              <https://www.rfc-editor.org/rfc/rfc7950>.
-
-   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
-              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
-              <https://www.rfc-editor.org/rfc/rfc8040>.
-
-   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
-              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
-              DOI 10.17487/RFC8299, January 2018,
-              <https://www.rfc-editor.org/rfc/rfc8299>.
 
 
 
@@ -1121,6 +1121,15 @@ Mackey, et al.            Expires 14 March 2025                [Page 20]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
+   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
+              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
+              DOI 10.17487/RFC8299, January 2018,
+              <https://www.rfc-editor.org/rfc/rfc8299>.
 
    [RFC8907]  Dahm, T., Ota, A., Medway Gash, D.C., Carrel, D., and L.
               Grant, "The Terminal Access Controller Access-Control
@@ -1162,21 +1171,18 @@ Appendix C.  Resource Description Framework (RDF) schema
    relationships to be grouped as more generalized relationships.
    Queries can be applied at different levels of specificity.
 
-   :ipfixRefersTo a rdf:Property ; rdfs:comment "IPFIX reference to a
-   leaf" ; rdfs:subPropertyOf :refersTo .
-
-   :ipfixRefersToInterface a rdf:Property ; rdfs:comment "IPFIX
-   reference to a leaf" ; rdfs:subPropertyOf :ipfixRefersTo .
-
-
-
-
 
 
 Mackey, et al.            Expires 14 March 2025                [Page 21]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
+
+   :ipfixRefersTo a rdf:Property ; rdfs:comment "IPFIX reference to a
+   leaf" ; rdfs:subPropertyOf :refersTo .
+
+   :ipfixRefersToInterface a rdf:Property ; rdfs:comment "IPFIX
+   reference to a leaf" ; rdfs:subPropertyOf :ipfixRefersTo .
 
 Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)
 
@@ -1222,16 +1228,15 @@ Authors' Addresses
    Email: michael.mackey@huawei.com
 
 
-   Benoit Claise
-   Huawei
-   Email: benoit.claise@huawei.com
-
-
-
 
 Mackey, et al.            Expires 14 March 2025                [Page 22]
 
 Internet-Draft           Knowledge Graph NetOps           September 2024
+
+
+   Benoit Claise
+   Huawei
+   Email: benoit.claise@huawei.com
 
 
    Thomas Graf
@@ -1258,11 +1263,6 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    3771 Barneveld
    Netherlands
    Email: paolo@ntt.com
-
-
-
-
-
 
 
 

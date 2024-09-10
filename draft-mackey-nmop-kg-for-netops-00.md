@@ -74,15 +74,15 @@ The IAB organized a workshop in June 2002 to establish a dialog between
 network operators and protocol developers, to guide IETF when
 working on network management protocols and data models. The outcome of that workshop
 was documented in the "Overview of the 2002 IAB Network Management
-Workshop" {{!RFC3535}} which identified 14 operator requirements for
+Workshop" {{?RFC3535}} which identified 14 operator requirements for
 consideration in future network management protocol design and related
 data models, along with some recommendations for the IETF.
 
 The RFC3535 requirements were instrumental in developing first the
-NETCONF protocol (in the NETCONF Working Group) {{!RFC6241}}, the
+NETCONF protocol (in the NETCONF Working Group) {{?RFC6241}}, the
 associated YANG data modeling language (in the NETMOD Working Group)
-{{!RFC7950}}, RESTCONF {{!RFC8040}}, and most recently CORECONF
-{{!I-D.ietf-core-comi}}.
+{{!RFC7950}}, RESTCONF {{?RFC8040}}, and most recently CORECONF
+{{?I-D.ietf-core-comi}}.
 
 A new IAB workshop, Next Era of Network Management Operations (NEMOPS),
 is getting organized to tackle the next big challenges in the world of
@@ -96,7 +96,7 @@ proposes a new framework based on knowledge graph, to solve (some of)
 those operational challenges, mainly how to automatically assure networks.
 
 As an introduction, let's review the difference between information model and data model.
-Quoting RFC 3444, "The main purpose of an information model is to model
+Quoting RFC 3444 {{?RFC3444}}, "The main purpose of an information model is to model
 managed objects at a conceptual level, independent of any specific
 implementations or protocols used to transport the data. The degree of
 specificity (or detail) of the abstractions defined in the information
@@ -255,9 +255,9 @@ being worked on:
 
 TO DO: once we have the exact challenge tags, we are going to refer to those
 
-- Service Assurance for Intent Based Networking {{!RFC9417}} {{!RFC9418}}
+- Service Assurance for Intent Based Networking {{?RFC9417}} {{?RFC9418}}
 
-- Network Telemetry framework {{!RFC9232}} explains the different telemetry mechanisms
+- Network Telemetry framework {{?RFC9232}} explains the different telemetry mechanisms
 
 - [draft-ietf-nmop-yang-message-broker-integration-03](https://datatracker.ietf.org/doc/draft-ietf-nmop-yang-message-broker-integration/)  
   specifies an Architecture for YANG-Push to Message Broker Integration is helping with the data collection aspects.
@@ -313,11 +313,11 @@ This problem is compounded by a large, disparate set of data sources:
 * MIB modules for monitoring, 
 * YANG models {{!RFC7950}} for configuration and monitoring, 
 * IPFIX information elements {{!RFC7011}} for flow information, 
-* syslog plain text {{!RFC3164}} for fault management, 
-* TACACS+ {{!RFC8907}} or RADIUS {{!RFC2865}} in the AAA (Authorization,
+* syslog plain text {{?RFC3164}} for fault management, 
+* TACACS+ {{?RFC8907}} or RADIUS {{?RFC2865}} in the AAA (Authorization,
  Authentication, Accounting) world, 
-* BGP FlowSpec {{!RFC5575}} for BGP filter, 
-* BMP - BGP Monitoring protocol {{!RFC7854}}
+* BGP FlowSpec {{?RFC5575}} for BGP filter, 
+* BMP - BGP Monitoring protocol {{?RFC7854}}
 * BPG-LS for IGP monitoring
 * Openflow for control plane, 
 * etc.
@@ -371,17 +371,17 @@ integration and the potentially mapping of those different data models.
 
 
 Going one step further, understanding that an anomaly defined in 
-{{!I-D.netana-nmop-network-anomaly-lifecycle}}
-is connected to a symptom created by SAIN {{!RFC9418}}, which has an alert 
+{{?I-D.netana-nmop-network-anomaly-lifecycle}}
+is connected to a symptom created by SAIN {{?RFC9418}}, which has an alert 
 that defines an expression based on a set of metrics that are IETF but also 
 vendor defined. The Service(s) that are experiencing an anomaly defined using a 
 Service Intent that was defined using /[TMF921A/] but full filled using 
-{{!RFC9182}} that maps to one or more vendor models. 
+{{?RFC9182}} that maps to one or more vendor models. 
 
 In order to be able to automate any closed loop action, the relationship 
 between the Service Intent (defined using /[TMF921A/]), the error/policy 
 condition that caused the symptom and the fulfillment provided at the device 
-level via {{!RFC9182}} all have to be understood. 
+level via {{?RFC9182}} all have to be understood. 
 
 Many of the operators (at the time of writing) who are trying to document and
 manage these relationships are trying to do it using various spreadsheets and 
@@ -636,7 +636,7 @@ analyze data from different network planes:
 - **OWL & RDF(S)** can define rules, relationships and constraints that
 breakdown the barriers between the network planes and link this data with
 all relavent information (e.g. context based on topologies represented by 
-{{!I-D.havel-nmop-digital-map}}, configuration based on network element 
+{{?I-D.havel-nmop-digital-map}}, configuration based on network element 
 YANG).
 
 ## Bridging Organizational Silos
@@ -673,13 +673,13 @@ intent, the BSS
 
 # Translation of YANG to RDF
 
-Since the original YANG specification {{!RFC6020}}, IETF has embraced YANG as 
+Since the original YANG specification {{?RFC6020}}, IETF has embraced YANG as 
 the way to define any new models or API, from the device all the way up the 
-Service model {{!RFC8299}}. How easy would it be to convert these vast model
+Service model {{?RFC8299}}. How easy would it be to convert these vast model
 set to RDF ?.  
 
 RDF has it roots in semantic web and is defined by the w3c, who are also the
-owners of the XML standard. The original {{!RFC6020}} definition for YANG has
+owners of the XML standard. The original {{?RFC6020}} definition for YANG has
 XML deeply embedded, defining serialization formats for the YANG (YIN) in XML
 as well as of course instance of YANG data used by NETCONF. 
 
