@@ -17,7 +17,7 @@ Expires: 14 March 2025                                           T. Graf
 
 
             Knowledge Graph Framework for Network Operations
-                   draft-mackey-nmop-kg-for-netops-00
+                   draft-mackey-nmop-kg-for-netops-01
 
 Abstract
 
@@ -1225,7 +1225,7 @@ Authors' Addresses
 
    Michael Mackey
    Huawei
-   Email: michael.mackey@huawei.com
+   Ireland
 
 
 
@@ -1234,8 +1234,12 @@ Mackey, et al.            Expires 14 March 2025                [Page 22]
 Internet-Draft           Knowledge Graph NetOps           September 2024
 
 
+   Email: michael.mackey@huawei.com
+
+
    Benoit Claise
    Huawei
+   Belgium
    Email: benoit.claise@huawei.com
 
 
@@ -1249,11 +1253,13 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
 
    Holger Keller
    Deutsche Telekom
+   Germany
    Email: Holger.Keller@telekom.de
 
 
    Dan Voyer
    Bell Canada
+   Canada
    Email: daniel.voyer@bell.ca
 
 
@@ -1262,13 +1268,7 @@ Internet-Draft           Knowledge Graph NetOps           September 2024
    Veemweg 23
    3771 Barneveld
    Netherlands
-   Email: paolo@ntt.com
-
-
-
-
-
-
+   Email: paolo@ntt.net
 
 
 

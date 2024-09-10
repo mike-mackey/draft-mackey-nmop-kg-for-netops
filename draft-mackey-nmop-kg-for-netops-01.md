@@ -1,7 +1,7 @@
 ---
 title: "Knowledge Graph Framework for Network Operations"
 abbrev: Knowledge Graph NetOps
-docname: draft-mackey-nmop-kg-for-netops-00
+docname: draft-mackey-nmop-kg-for-netops-01
 category: info
 
 stand_alone: true
@@ -16,10 +16,12 @@ author:
   -
     fullname: Michael Mackey
     org: Huawei
+    country: Ireland
     email: michael.mackey@huawei.com
   -
     fullname: Benoit Claise
     org: Huawei
+    country: Belgium
     email: benoit.claise@huawei.com
   -
     fullname: Thomas Graf
@@ -32,10 +34,12 @@ author:
   - 
     fullname: Holger Keller
     org: Deutsche Telekom
+    country: Germany
     email: Holger.Keller@telekom.de 
   - 
     fullname: Dan Voyer
     org: Bell Canada
+    country: Canada
     email: daniel.voyer@bell.ca
   -
     fullname: Paolo Lucente
@@ -44,7 +48,7 @@ author:
     city: Barneveld
     code: 3771
     country: Netherlands
-    email: paolo@ntt.com
+    email: paolo@ntt.net
 
 contributor:
   
