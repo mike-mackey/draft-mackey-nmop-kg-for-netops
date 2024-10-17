@@ -85,7 +85,7 @@ data models, along with some recommendations for the IETF.
 The RFC3535 requirements were instrumental in developing first the
 NETCONF protocol (in the NETCONF Working Group) {{?RFC6241}}, the
 associated YANG data modeling language (in the NETMOD Working Group)
-{{!RFC7950}}, RESTCONF {{?RFC8040}}, and most recently CORECONF
+{{?RFC7950}}, RESTCONF {{?RFC8040}}, and most recently CORECONF
 {{?I-D.ietf-core-comi}}.
 
 A new IAB workshop, Next Era of Network Management Operations (NEMOPS),
@@ -236,7 +236,7 @@ multiple sources of truth in networking:
 - the network itself (applied state, described by the Digital Map)
 
 - the inventory, typically stored across different systems, with
-  different ID (sometimes UUID {{!RFC7950}})
+  a different ID (sometimes UUID {{!RFC7950}})
 
 - the IP Address Management (IPAM) is another other source of truth
 
@@ -266,8 +266,11 @@ TO DO: once we have the exact challenge tags, we are going to refer to those
 - [draft-ietf-nmop-yang-message-broker-integration-03](https://datatracker.ietf.org/doc/draft-ietf-nmop-yang-message-broker-integration/)  
   specifies an Architecture for YANG-Push to Message Broker Integration is helping with the data collection aspects.
 
-- [draft-ietf-opsawg-collected-data-manifest](https://datatracker.ietf.org/doc/draft-ietf-opsawg-collected-data-manifest/) documents the metadata that ensure
-   that the streaming collected data can be interpreted correctly
+- [draft-ietf-opsawg-collected-data-manifest](https://datatracker.ietf.org/doc/draft-ietf-opsawg-collected-data-manifest/) 
+  documents the metadata that ensure that the streaming collected data can be interpreted correctly.
+
+- [draft-ietf-nmop-network-anomaly-architecture](https://datatracker.ietf.org/doc/draft-ietf-nmop-network-anomaly-architecture/) defines 
+  an architecture for detecting anomalies in the network
 
 - The basic concepts of the Digital Map are mentioned in [draft-havel-nmop-digital-map-concept](https://datatracker.ietf.org/doc/draft-havel-nmop-digital-map-concept/)  
 
@@ -276,6 +279,7 @@ However, these building blocks are not sufficient.
 
 # The Difficult and Costly Data Models Integration with Different Silos Protocol & Data Models 
 
+## Understanding And Using Different Models In A Solution
 Even excluding the vast amount of vendor specific models, the telecommunication
 industry is drowning in models from many different SDOs (IETF, TMF,
 ETSI, ONF, MEF, 3GPP). All of them fulfill a need and all of them are
@@ -293,17 +297,21 @@ remains (and will likely always remain) unachievable. So what is needed is
 a way to understand how these different models connect and how these
 models were interpreted by the solution designer. 
 
-So for an example: In order to onboard a new device, what features and models that device 
+## Example: Onboarding A New Device
+In order to onboard a new device, what features and models that device 
 supports must be known, how that device will map to any existing internal
-models for both resource management e.g. {{https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI}}, 
+models for resource management e.g. {{https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI}}, 
 Assurance is mapped to existing assurance and collection models 
-(data collection/message broker/TSDBs), existing health assurance pipelines.
+(data collection/message broker/TSDBs), existing health assurance pipelines 
+(as described in [draft-ietf-nmop-network-anomaly-architecture]).
+
 If I onboard a new device will it work with my data processing pipeline
 If I receive observe a problem in my service, can I trace quickly to find the 
 related network configuration, if I decide I need to modify that network 
 configuration do I know the values that must change at the resource API in 
 order for it to happen.
 
+## Different Models For Different Jobs
 On the other side, with different technology domains and different protocols, come
 different data models. In order to assure cross domain use cases, the
 network management system and network operators must integrate all the
@@ -314,16 +322,15 @@ situations, there exist different ways to model the same type of
 information.
 
 This problem is compounded by a large, disparate set of data sources:
-* MIB modules for monitoring, 
-* YANG models {{!RFC7950}} for configuration and monitoring, 
-* IPFIX information elements {{!RFC7011}} for flow information, 
+* MIB modules {{?RFC3418}} for monitoring, 
+* YANG models {{?RFC7950}} for configuration and monitoring, 
+* IPFIX information elements {{?RFC7011}} for flow information, 
 * syslog plain text {{?RFC3164}} for fault management, 
 * TACACS+ {{?RFC8907}} or RADIUS {{?RFC2865}} in the AAA (Authorization,
  Authentication, Accounting) world, 
 * BGP FlowSpec {{?RFC5575}} for BGP filter, 
 * BMP - BGP Monitoring protocol {{?RFC7854}}
 * BPG-LS for IGP monitoring
-* Openflow for control plane, 
 * etc.
 or even simply the router CLI for router management.
 
@@ -337,10 +344,10 @@ When network operators deal with multiple data models, the task of
 mapping the different models is time-consuming, hence expensive, and
 difficult to automate.
 
+## Example: Whats An Interface ?
 To make it crystal clear, let's illustrate this with a very simple and
 well known networking concept: a simple interface. Let's start with a
 simple CLI command: "show ip interface" for basic interface information.
-
 
 - Between MIB module and YANG model, fortunately, we have the same
   ifIndex concept (ifIndex in MIB and if-index in YANG). This
@@ -373,7 +380,7 @@ protocol designers should understand that there will be an network
 management/automation cross domain use case that will require the
 integration and the potentially mapping of those different data models.
 
-
+## How To Connect Information For Closed Loop
 Going one step further, understanding that an anomaly defined in 
 {{?I-D.netana-nmop-network-anomaly-lifecycle}}
 is connected to a symptom created by SAIN {{?RFC9418}}, which has an alert 
@@ -413,13 +420,13 @@ TO BE COMPLETED.
 
 # Knowledge Graph Framework
 
-Addressing these challenges mentioned in section 2 requires innovative approaches that can
-handle the scale and complexity of the data while ensuring accurate
-correlation and analysis. By leveraging advanced data management
-techniques and semantic technologies, network operators can unlock the
-full potential of their data, paving the way for more efficient and
-autonomous network operations. Understanding the context and
-relationships of the data collected is essential to overcoming the
+Addressing these challenges mentioned in section 2 requires innovative 
+approaches that can handle the scale and complexity of the data while
+ensuring accurate correlation and analysis.
+By leveraging advanced data management techniques and semantic technologies,
+network operators can unlock the full potential of their data, paving the way
+for more efficient and autonomous network operations. Understanding the context
+and relationships of the data collected is essential to overcoming the
 limitations of traditional siloed approaches and achieving seamless,
 automated network management.
 
@@ -462,8 +469,11 @@ include:
 - **Problem Solving**: Solves complex problems by systematically
   exploring possible solutions based on the knowledge base.
 
-> The function of the inference engine is increasingly being provided by
-> MultiModel LLMS and generative AI.
+> In some proposed architectures the inference engine is split into individual
+> agents that have responsability for a decomposed aspect of the Service/
+> Network lifecycle (e.g. anomaly detection, assurance remediation, solution proposal, 
+> solutions evaluation, solution actuation etc). The Agents (which could be AI
+> Agents) can communicate/collaborate via the Knowledge Base. 
 
 ## Formal Ontology
 
@@ -496,6 +506,41 @@ includes:
 
 - **Integration**: Combining knowledge from multiple sources to provide
   a holistic understanding of the domain.
+
+# FAIR data
+FAIR Data Principles were defined in a 2016 research paper by a consortium of 
+scientists and organizations in Nature.  
+The authors intended to provide guidelines to improve the Findability, 
+Accessibility, Interoperability, and Reuse of digital assets. They have since
+published their principles in https://www.go-fair.org/fair-principles/.
+
+## Findability (F)
+Networking systems generate large amounts of configuration, telemetry, and 
+state data, which needs to be easily discoverable by network operators, 
+engineers, or automated systems.
+
+## Accessibility (A)
+Data within the networking domain needs to be accessible to both human operators
+and automated systems, with well-defined access mechanisms and protocols.
+
+## Interoperability (I)
+Networking environments typically involve many devices and protocols from 
+different vendors. Ensuring interoperability across systems is crucial for 
+seamless network operations and management.
+
+## Reusability (R)
+Reusability ensures that network data can be used and repurposed across 
+different contexts, applications, and scenarios.
+
+The FAIR principles have been widely cited, endorsed and adopted by a broad 
+range of stakeholders since their publication in 2016. By intention, the 15 
+FAIR guiding principles do not dictate specific technological implementations,
+but provide guidance for improving Findability, Accessibility, Interoperability
+and Reusability of digital resources. 
+
+The most widely-accepted choice to adhere to these principle, at the present time, 
+is the Resource Description Framework (RDF) which is the W3C's recommendation for 
+how to represent knowledge on the Web in a machine-accessible format
 
 # Introduction to the Semantic Web Technology Stack
 
@@ -559,6 +604,51 @@ Semantic Web technologies have significantly evolved beyond their
 initial web-based applications, extending into various industries
 (Healthcare, Finance, Manufacturing, Government and Public Sector) as a
 powerful means to define, integrate, and retrieve knowledge.
+
+## Validation: Shapes Constraint Language (SHACL)
+SHACL (Shapes Constraint Language) can be used to enhance an RDF-based solution
+by providing a formal mechanism for validating the structure, content, and 
+constraints of RDF data that models network devices, configurations, and 
+relationships.
+
+By using SHACL, you can ensure that the data adheres to predefined business 
+rules, network policies, and industry standards, thus improving data quality 
+and consistency within a management system.
+
+### Ensuring Data Consistency
+For instance, you can use SHACL to enforce that each network device has a 
+deviceType (e.g., router, switch) and an associated IP address, and that routers 
+have specific attributes such as a bgpAsn (BGP Autonomous System Number).
+
+### Validating Relationships 
+For relationships between objects, SHACL allows you to validate these interconnections 
+by specifying shapes that ensure the correct relationships are maintained.
+
+### Enforcing Network Policies
+In network management, policies can dictate how devices are configured and how 
+they interact. For example, a policy may require that certain VLANs are used in
+specific types of networks or that certain subnets are restricted to specific 
+devices.
+
+SHACL allows you to encode these policies as constraints and automatically 
+validate the RDF data against them. For instance, if a policy requires that 
+only certain VLANs are allowed on specific switches, you can define a SHACL 
+shape to validate this.
+
+###  Automating Configuration Compliance
+In large-scale networks, automating compliance checks is essential to ensure 
+devices are configured according to standards and policies. SHACL can be used
+to automatically validate the entire RDF dataset representing network 
+configurations against predefined shapes. This can flag potential issues such
+as missing configurations, incorrect relationships, or policy violations, 
+enabling network administrators to quickly take corrective action.
+
+### Error Reporting and Diagnostics
+SHACL provides detailed error reporting and diagnostics, which can help network 
+administrators quickly identify and fix issues in the network configuration. 
+For each violation of a SHACL shape, SHACL can generate meaningful error 
+messages, such as missing required properties, invalid data types, or 
+relationships that do not conform to the network topology.
 
 # Why Semantic Web is Right for the Networking World?
 
@@ -673,7 +763,7 @@ integration challenging:
 
 It's not only about protocol and models (IETF), we can link to the
 NMS/OSS layers, from the top down to the bottom up ... but also (business)
-intent, the BSS
+intent, the BSS.
 
 # Translation of YANG to RDF
 
@@ -776,7 +866,9 @@ This document has no actions for IANA.
 
 # Acknowledgments
 
-The authors would like to thank Peter Cautley and Anatolii Pererva for providing the appendix example.
+The authors would like to thank Peter Cautley and Anatolii Pererva for 
+providing the appendix example. Professor Declan O'Sullivan and Brad Peters for
+providing review comments. 
 
 # Appendix
 
