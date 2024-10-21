@@ -1,3 +1,5 @@
+
+
 ---
 title: "Knowledge Graph Framework for Network Operations"
 abbrev: Knowledge Graph NetOps
@@ -538,9 +540,45 @@ FAIR guiding principles do not dictate specific technological implementations,
 but provide guidance for improving Findability, Accessibility, Interoperability
 and Reusability of digital resources. 
 
-The most widely-accepted choice to adhere to these principle, at the present time, 
-is the Resource Description Framework (RDF) which is the W3C's recommendation for 
-how to represent knowledge on the Web in a machine-accessible format
+There are two major approaches to implementing knowledge graphs. Property graphs
+and RDF. In recent years Property graphs have gained a lot of traction with
+successful with companies like Neo4j and others attempting to standardize on an 
+approach. 
+
+Property graphs are great to use in a closed application but face a 
+number of issues when moving to large scale and open data that are designed to 
+be FAIR. For example:
+
+* **Schema**: Property Graphs do not have a schema. This can be considered a positive as well
+as negative, but having a schema that you can validate against can limit issues
+and bugs during implementations
+
+* **Validation**: Property graphs do not define a way to validate data but the W3C 
+standard, SHACL (SHApes Constraint Language) to specify constraints in a model 
+driven fashion.
+
+* **Globally Unique Identifiers**: The identifiers in Property Graphs are strictly
+local. They don’t mean anything outside the context of the immediate database. 
+
+* **Resolvable Identifiers**: Because URI/IRIs are so similar to URLs, and indeed
+in many situations are URLs it makes it easy to resolve any item in RDF graph. 
+
+* **Federation**: While there are proprietary mechanisms for federating property 
+graphs across databases e.g. neo4j fabric, federation is built into SPARQL the
+W3C standard for querying “triple stores” or RDF based Graph Databases.
+
+There is ways for these two worlds to converge though, there is current work 
+within the w3c to add propertys to edges in RDF. This work [RDF-star](https://w3c.github.io/rdf-star/cg-spec/editors_draft.html)
+(RDF-*) and SPARQL-star (SPARQL-*) at time of writing is ongoing in the W3C. 
+
+Similarly, Neo4j has a plugin "Neosemantics" that enables the use of RDF data
+and some of the RDF stack (OWL,RDFS,SHACL) inside of Neo4j but crucially using 
+Cipher and not SPARQL for querys.
+
+So as of now, RDF Knowledge Graphs have FAIR baked in and are part of the 
+standard. Property graph approaches have proprietary solutions to help make 
+things FAIR but there is no standard. These two worlds and approaches do seem
+to be converging though. 
 
 # Introduction to the Semantic Web Technology Stack
 
@@ -729,7 +767,7 @@ analyze data from different network planes:
 
 - **OWL & RDF(S)** can define rules, relationships and constraints that
 breakdown the barriers between the network planes and link this data with
-all relavent information (e.g. context based on topologies represented by 
+all relevant information (e.g. context based on topologies represented by 
 {{?I-D.havel-nmop-digital-map}}, configuration based on network element 
 YANG).
 
@@ -788,7 +826,7 @@ be generated externally by a knowledge system without need to access the real
 data. There is a second advantage that it is human readable and therefore easy
 to browse. 
 
-The main disadvantage being the possible lenght of IRIs and the 
+The main disadvantage being the possible length of IRIs and the 
 volume of data being processed could be lead to memory/performance issues. 
 There are obvious trade offs to be explored but it can be seen that YANG is 
 very much a good fit for modelling as knowledge in RDF give both formats close
@@ -875,8 +913,12 @@ providing review comments.
 
 # Resource Description Framework (RDF) schema
 
-The RDF Schema defines the different types of relationship (RDF properties). They are defined hierarchically. That allows specific relationships to be grouped as more generalized relationships. Queries can be applied at different levels of specificity.
+The RDF Schema defines the different types of relationship (RDF properties). 
+They are defined hierarchically. That allows specific relationships to be 
+grouped as more generalized relationships. Queries can be applied at different
+levels of specificity.
 
+~~~~
 :ipfixRefersTo a rdf:Property ;
     rdfs:comment "IPFIX reference to a leaf" ;
     rdfs:subPropertyOf :refersTo .
@@ -884,12 +926,17 @@ The RDF Schema defines the different types of relationship (RDF properties). The
 :ipfixRefersToInterface a rdf:Property ;
     rdfs:comment "IPFIX reference to a leaf" ;
     rdfs:subPropertyOf :ipfixRefersTo .
-
+~~~~
 
 # SPARQL Protocol and RDF Query Language (SPARQL)
 
-SPARQL finds different relationships that exist between data sources e.g. The relationship "ipfixRefersToInterface" (defined in the RDF schema) will find relationships between any IPFIX data field and the Device Interface. A more generalized relationship "ipfixRefersTo" would find all known relationships between IPFIX and Device (underlay, overlay) Configuration. 
+SPARQL finds different relationships that exist between data sources e.g. The 
+relationship "ipfixRefersToInterface" (defined in the RDF schema) will find 
+relationships between any IPFIX data field and the Device Interface. A more 
+generalized relationship "ipfixRefersTo" would find all known relationships 
+between IPFIX and Device (underlay, overlay) Configuration. 
 
+~~~~
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX yang: <http://localhost/yang#>
 SELECT ?source_path ?relationship ?target_path
@@ -899,7 +946,7 @@ WHERE {
   ?source yang:path ?source_path .
   ?target yang:path ?target_path .
 }
-
+~~~~
 
 # RESULT
 
@@ -910,11 +957,55 @@ The result for the above query shows
 - the type of relationship: (specified in the RDF schema)
 - the target: YANG path specified in Device Configuration
 
-+-------------------------------+-------------------------------------------------+----------------------------------+
-| source                        | relationship                                    | target                           |
-+-------------------------------+-------------------------------------------------+----------------------------------+
-| "ingressInterface"            | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
-| "egressInterface"             | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
-+-------------------------------+-------------------------------------------------+----------------------------------+
+~~~~
++--------------------+-------------------------------------------------+----------------------------------+
+| source             | relationship                                    | target                           |
++--------------------+-------------------------------------------------+----------------------------------+
+| "ingressInterface" | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
+| "egressInterface"  | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
++--------------------+-------------------------------------------------+----------------------------------+
+~~~~
+
+
+# SHACL 
+
+SHACL (Shapes Constraint Language) can be used to enhance an RDF-based solution
+for network management by providing a formal mechanism for validating the 
+structure, content, and constraints of RDF data that models network devices, 
+configurations, and relationships. By using SHACL, you can ensure that the data
+adheres to predefined business rules, network policies, and industry standards,
+thus improving data quality and consistency within a network management system.
+
+Example of SHACL to validate every router that uses the BGP protocol has a valid 
+BGP ASN configured.
+~~~~
+ex:BGPComplianceShape a sh:NodeShape ;
+    sh:targetClass ex:Router ;
+    sh:property [
+        sh:path ex:routingProtocol ;
+        sh:hasValue "bgp" ;
+    ] ;
+    sh:property [
+        sh:path ex:bgpAsn ;
+        sh:minCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:message "Routers using BGP must have a BGP ASN defined." ;
+    ] ;
+~~~~
+
+SHACL can also be used to validate relationships between objects, here is an 
+example of a rule that says each router must be connected to at least one 
+switch. 
+
+~~~~
+ex:RouterSwitchConnectionShape a sh:NodeShape ;
+    sh:targetClass ex:Router ;
+    sh:property [
+        sh:path ex:connectedTo ;
+        sh:class ex:Switch ;
+        sh:minCount 1 ;
+        sh:message "Each router must be connected to at least one switch." ;
+    ] ;
+~~~~
 
 {:numbered="false"}
