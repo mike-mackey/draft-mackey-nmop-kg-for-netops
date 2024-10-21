@@ -1,5 +1,3 @@
-
-
 ---
 title: "Knowledge Graph Framework for Network Operations"
 abbrev: Knowledge Graph NetOps
@@ -540,6 +538,8 @@ FAIR guiding principles do not dictate specific technological implementations,
 but provide guidance for improving Findability, Accessibility, Interoperability
 and Reusability of digital resources. 
 
+
+## Creating And Using FAIR Knowledge Graphs
 There are two major approaches to implementing knowledge graphs. Property graphs
 and RDF. In recent years Property graphs have gained a lot of traction with
 successful with companies like Neo4j and others attempting to standardize on an 

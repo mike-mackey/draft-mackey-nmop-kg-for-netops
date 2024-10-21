@@ -5,7 +5,7 @@
 NMOP                                                           M. Mackey
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 20 April 2025                                           T. Graf
+Expires: 24 April 2025                                           T. Graf
                                                                 Swisscom
                                                                H. Keller
                                                         Deutsche Telekom
@@ -13,7 +13,7 @@ Expires: 20 April 2025                                           T. Graf
                                                              Bell Canada
                                                               P. Lucente
                                                                      NTT
-                                                         17 October 2024
+                                                         21 October 2024
 
 
             Knowledge Graph Framework for Network Operations
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 1]
+Mackey, et al.            Expires 24 April 2025                 [Page 1]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -109,52 +109,54 @@ Table of Contents
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 2]
+Mackey, et al.            Expires 24 April 2025                 [Page 2]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
-   7.  Introduction to the Semantic Web Technology Stack . . . . . .  15
+     6.5.  Creating And Using FAIR Knowledge Graphs  . . . . . . . .  14
+   7.  Introduction to the Semantic Web Technology Stack . . . . . .  16
      7.1.  URI/IRI: Uniform Resource Identifier/Internationalized
-           Resource Identifier . . . . . . . . . . . . . . . . . . .  15
-     7.2.  RDF: Resource Description Framework . . . . . . . . . . .  15
-     7.3.  RDFS: RDF Schema  . . . . . . . . . . . . . . . . . . . .  15
-     7.4.  OWL: Web Ontology Language  . . . . . . . . . . . . . . .  15
-     7.5.  Query: SPARQL Protocol and RDF Query Language . . . . . .  16
-     7.6.  Validation: Shapes Constraint Language (SHACL)  . . . . .  16
-       7.6.1.  Ensuring Data Consistency . . . . . . . . . . . . . .  16
-       7.6.2.  Validating Relationships  . . . . . . . . . . . . . .  16
-       7.6.3.  Enforcing Network Policies  . . . . . . . . . . . . .  16
-       7.6.4.  Automating Configuration Compliance . . . . . . . . .  17
-       7.6.5.  Error Reporting and Diagnostics . . . . . . . . . . .  17
-   8.  Why Semantic Web is Right for the Networking World? . . . . .  17
-     8.1.  Handling Vast Amounts of Data . . . . . . . . . . . . . .  17
-     8.2.  Improved Data Correlation and Integration . . . . . . . .  17
-     8.3.  Contextual Understanding and Enhanced Metadata  . . . . .  18
-     8.4.  Data Interoperability Across Multiple Repositories  . . .  18
-     8.5.  Enhanced Fault Prediction and Automated Remediation . . .  19
-     8.6.  Bridging Organizational Silos . . . . . . . . . . . . . .  19
-     8.7.  Managing Schema and Format Disparities  . . . . . . . . .  19
-   9.  Translation of YANG to RDF  . . . . . . . . . . . . . . . . .  20
-     9.1.  Some pointers to existing work for linked data  . . . . .  20
+           Resource Identifier . . . . . . . . . . . . . . . . . . .  16
+     7.2.  RDF: Resource Description Framework . . . . . . . . . . .  16
+     7.3.  RDFS: RDF Schema  . . . . . . . . . . . . . . . . . . . .  16
+     7.4.  OWL: Web Ontology Language  . . . . . . . . . . . . . . .  16
+     7.5.  Query: SPARQL Protocol and RDF Query Language . . . . . .  17
+     7.6.  Validation: Shapes Constraint Language (SHACL)  . . . . .  17
+       7.6.1.  Ensuring Data Consistency . . . . . . . . . . . . . .  17
+       7.6.2.  Validating Relationships  . . . . . . . . . . . . . .  17
+       7.6.3.  Enforcing Network Policies  . . . . . . . . . . . . .  17
+       7.6.4.  Automating Configuration Compliance . . . . . . . . .  18
+       7.6.5.  Error Reporting and Diagnostics . . . . . . . . . . .  18
+   8.  Why Semantic Web is Right for the Networking World? . . . . .  18
+     8.1.  Handling Vast Amounts of Data . . . . . . . . . . . . . .  18
+     8.2.  Improved Data Correlation and Integration . . . . . . . .  18
+     8.3.  Contextual Understanding and Enhanced Metadata  . . . . .  19
+     8.4.  Data Interoperability Across Multiple Repositories  . . .  19
+     8.5.  Enhanced Fault Prediction and Automated Remediation . . .  20
+     8.6.  Bridging Organizational Silos . . . . . . . . . . . . . .  20
+     8.7.  Managing Schema and Format Disparities  . . . . . . . . .  20
+   9.  Translation of YANG to RDF  . . . . . . . . . . . . . . . . .  21
+     9.1.  Some pointers to existing work for linked data  . . . . .  21
        9.1.1.  NGSI-LD (Next Generation IoT Services Layer -
-               Lightweight Data) . . . . . . . . . . . . . . . . . .  20
-       9.1.2.  TMF921A Intent Management API . . . . . . . . . . . .  21
-   10. Next Steps for the Industry . . . . . . . . . . . . . . . . .  21
-   11. Security Considerations . . . . . . . . . . . . . . . . . . .  21
-   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  21
-   13. Reference . . . . . . . . . . . . . . . . . . . . . . . . . .  21
-     13.1.  Normative References . . . . . . . . . . . . . . . . . .  21
-     13.2.  Informative References (to be included)  . . . . . . . .  22
-   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     14.1.  Normative References . . . . . . . . . . . . . . . . . .  22
-     14.2.  Informative References . . . . . . . . . . . . . . . . .  22
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  24
-   Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  24
-   Appendix C.  Resource Description Framework (RDF) schema  . . . .  25
-   Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)  . .  25
-   Appendix E.  RESULT . . . . . . . . . . . . . . . . . . . . . . .  25
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  26
+               Lightweight Data) . . . . . . . . . . . . . . . . . .  21
+       9.1.2.  TMF921A Intent Management API . . . . . . . . . . . .  22
+   10. Next Steps for the Industry . . . . . . . . . . . . . . . . .  22
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  22
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
+   13. Reference . . . . . . . . . . . . . . . . . . . . . . . . . .  22
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  22
+     13.2.  Informative References (to be included)  . . . . . . . .  23
+   14. References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
+     14.1.  Normative References . . . . . . . . . . . . . . . . . .  23
+     14.2.  Informative References . . . . . . . . . . . . . . . . .  23
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  25
+   Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  25
+   Appendix C.  Resource Description Framework (RDF) schema  . . . .  26
+   Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)  . .  26
+   Appendix E.  RESULT . . . . . . . . . . . . . . . . . . . . . . .  26
+   Appendix F.  SHACL  . . . . . . . . . . . . . . . . . . . . . . .  27
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  27
 
 
 
@@ -163,9 +165,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-
-
-Mackey, et al.            Expires 20 April 2025                 [Page 3]
+Mackey, et al.            Expires 24 April 2025                 [Page 3]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -221,7 +221,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 4]
+Mackey, et al.            Expires 24 April 2025                 [Page 4]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -277,7 +277,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 5]
+Mackey, et al.            Expires 24 April 2025                 [Page 5]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -333,7 +333,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 6]
+Mackey, et al.            Expires 24 April 2025                 [Page 6]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -389,7 +389,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 7]
+Mackey, et al.            Expires 24 April 2025                 [Page 7]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -445,7 +445,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 8]
+Mackey, et al.            Expires 24 April 2025                 [Page 8]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -501,7 +501,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                 [Page 9]
+Mackey, et al.            Expires 24 April 2025                 [Page 9]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -557,7 +557,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 10]
+Mackey, et al.            Expires 24 April 2025                [Page 10]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -613,7 +613,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 11]
+Mackey, et al.            Expires 24 April 2025                [Page 11]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -669,7 +669,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 12]
+Mackey, et al.            Expires 24 April 2025                [Page 12]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -725,7 +725,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 13]
+Mackey, et al.            Expires 24 April 2025                [Page 13]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -769,10 +769,63 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
    Findability, Accessibility, Interoperability and Reusability of
    digital resources.
 
-   The most widely-accepted choice to adhere to these principle, at the
-   present time, is the Resource Description Framework (RDF) which is
-   the W3C's recommendation for how to represent knowledge on the Web in
-   a machine-accessible format
+6.5.  Creating And Using FAIR Knowledge Graphs
+
+   There are two major approaches to implementing knowledge graphs.
+   Property graphs and RDF.  In recent years Property graphs have gained
+   a lot of traction with successful with companies like Neo4j and
+   others attempting to standardize on an approach.
+
+
+
+
+
+
+Mackey, et al.            Expires 24 April 2025                [Page 14]
+
+Internet-Draft           Knowledge Graph NetOps             October 2024
+
+
+   Property graphs are great to use in a closed application but face a
+   number of issues when moving to large scale and open data that are
+   designed to be FAIR.  For example:
+
+   *  *Schema*: Property Graphs do not have a schema.  This can be
+      considered a positive as well as negative, but having a schema
+      that you can validate against can limit issues and bugs during
+      implementations
+
+   *  *Validation*: Property graphs do not define a way to validate data
+      but the W3C standard, SHACL (SHApes Constraint Language) to
+      specify constraints in a model driven fashion.
+
+   *  *Globally Unique Identifiers*: The identifiers in Property Graphs
+      are strictly local.  They don’t mean anything outside the context
+      of the immediate database.
+
+   *  *Resolvable Identifiers*: Because URI/IRIs are so similar to URLs,
+      and indeed in many situations are URLs it makes it easy to resolve
+      any item in RDF graph.
+
+   *  *Federation*: While there are proprietary mechanisms for
+      federating property graphs across databases e.g. neo4j fabric,
+      federation is built into SPARQL the W3C standard for querying
+      “triple stores” or RDF based Graph Databases.
+
+   There is ways for these two worlds to converge though, there is
+   current work within the w3c to add propertys to edges in RDF.  This
+   work RDF-star (https://w3c.github.io/rdf-star/cg-spec/
+   editors_draft.html) (RDF-_) and SPARQL-star (SPARQL-_) at time of
+   writing is ongoing in the W3C.
+
+   Similarly, Neo4j has a plugin "Neosemantics" that enables the use of
+   RDF data and some of the RDF stack (OWL,RDFS,SHACL) inside of Neo4j
+   but crucially using Cipher and not SPARQL for querys.
+
+   So as of now, RDF Knowledge Graphs have FAIR baked in and are part of
+   the standard.  Property graph approaches have proprietary solutions
+   to help make things FAIR but there is no standard.  These two worlds
+   and approaches do seem to be converging though.
 
 
 
@@ -781,7 +834,10 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 14]
+
+
+
+Mackey, et al.            Expires 24 April 2025                [Page 15]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -837,7 +893,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 15]
+Mackey, et al.            Expires 24 April 2025                [Page 16]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -893,7 +949,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 16]
+Mackey, et al.            Expires 24 April 2025                [Page 17]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -949,7 +1005,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 17]
+Mackey, et al.            Expires 24 April 2025                [Page 18]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1005,7 +1061,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 18]
+Mackey, et al.            Expires 24 April 2025                [Page 19]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1021,7 +1077,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
    *  *OWL & RDF(S)* can define rules, relationships and constraints
       that breakdown the barriers between the network planes and link
-      this data with all relavent information (e.g. context based on
+      this data with all relevant information (e.g. context based on
       topologies represented by [I-D.havel-nmop-digital-map],
       configuration based on network element YANG).
 
@@ -1061,7 +1117,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 19]
+Mackey, et al.            Expires 24 April 2025                [Page 20]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1091,7 +1147,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
    second advantage that it is human readable and therefore easy to
    browse.
 
-   The main disadvantage being the possible lenght of IRIs and the
+   The main disadvantage being the possible length of IRIs and the
    volume of data being processed could be lead to memory/performance
    issues.  There are obvious trade offs to be explored but it can be
    seen that YANG is very much a good fit for modelling as knowledge in
@@ -1117,7 +1173,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 20]
+Mackey, et al.            Expires 24 April 2025                [Page 21]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1173,7 +1229,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 21]
+Mackey, et al.            Expires 24 April 2025                [Page 22]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1205,9 +1261,9 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
               Havel, O., Claise, B., de Dios, O. G., Elhassany, A., and
               T. Graf, "Modeling the Digital Map based on RFC 8345:
               Sharing Experience and Perspectives", Work in Progress,
-              Internet-Draft, draft-havel-nmop-digital-map-01, 5 July
-              2024, <https://datatracker.ietf.org/doc/html/draft-havel-
-              nmop-digital-map-01>.
+              Internet-Draft, draft-havel-nmop-digital-map-02, 21
+              October 2024, <https://datatracker.ietf.org/doc/html/
+              draft-havel-nmop-digital-map-02>.
 
    [I-D.ietf-core-comi]
               Veillette, M., Van der Stok, P., Pelov, A., Bierman, A.,
@@ -1220,16 +1276,16 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
               Riccobene, V., Roberto, A., Graf, T., Du, W., and A. H.
               Feng, "Experiment: Network Anomaly Lifecycle", Work in
               Progress, Internet-Draft, draft-netana-nmop-network-
-              anomaly-lifecycle-03, 8 July 2024,
+              anomaly-lifecycle-04, 21 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-netana-nmop-
-              network-anomaly-lifecycle-03>.
+              network-anomaly-lifecycle-04>.
 
 
 
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 22]
+Mackey, et al.            Expires 24 April 2025                [Page 23]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1285,7 +1341,7 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 23]
+Mackey, et al.            Expires 24 April 2025                [Page 24]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1341,7 +1397,7 @@ Appendix B.  Appendix
 
 
 
-Mackey, et al.            Expires 20 April 2025                [Page 24]
+Mackey, et al.            Expires 24 April 2025                [Page 25]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
@@ -1353,11 +1409,13 @@ Appendix C.  Resource Description Framework (RDF) schema
    relationships to be grouped as more generalized relationships.
    Queries can be applied at different levels of specificity.
 
-   :ipfixRefersTo a rdf:Property ; rdfs:comment "IPFIX reference to a
-   leaf" ; rdfs:subPropertyOf :refersTo .
+   :ipfixRefersTo a rdf:Property ;
+       rdfs:comment "IPFIX reference to a leaf" ;
+       rdfs:subPropertyOf :refersTo .
 
-   :ipfixRefersToInterface a rdf:Property ; rdfs:comment "IPFIX
-   reference to a leaf" ; rdfs:subPropertyOf :ipfixRefersTo .
+   :ipfixRefersToInterface a rdf:Property ;
+       rdfs:comment "IPFIX reference to a leaf" ;
+       rdfs:subPropertyOf :ipfixRefersTo .
 
 Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)
 
@@ -1368,12 +1426,15 @@ Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)
    would find all known relationships between IPFIX and Device
    (underlay, overlay) Configuration.
 
-   PREFIX rdfs: http://www.w3.org/2000/01/rdf-schema#
-   (http://www.w3.org/2000/01/rdf-schema#) PREFIX yang:
-   http://localhost/yang# (http://localhost/yang#) SELECT ?source_path
-   ?relationship ?target_path WHERE { ?source ?relationship ?target .
-   ?relationship rdfs:subPropertyOf* yang:ipfixRefersToInterface .
-   ?source yang:path ?source_path .  ?target yang:path ?target_path . }
+   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+   PREFIX yang: <http://localhost/yang#>
+   SELECT ?source_path ?relationship ?target_path
+   WHERE {
+     ?source ?relationship ?target .
+     ?relationship rdfs:subPropertyOf* yang:ipfixRefersToInterface .
+     ?source yang:path ?source_path .
+     ?target yang:path ?target_path .
+   }
 
 Appendix E.  RESULT
 
@@ -1383,37 +1444,50 @@ Appendix E.  RESULT
    type of relationship: (specified in the RDF schema) - the target:
    YANG path specified in Device Configuration
 
++--------------------+-------------------------------------------------+----------------------------------+
+| source             | relationship                                    | target                           |
++--------------------+-------------------------------------------------+----------------------------------+
+| "ingressInterface" | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
+| "egressInterface"  | <http://localhost/yang#ipfixRefersToInterface>  | "ifm/interfaces/interface/index" |
++--------------------+-------------------------------------------------+----------------------------------+
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Mackey, et al.            Expires 20 April 2025                [Page 25]
+Mackey, et al.            Expires 24 April 2025                [Page 26]
 
 Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
-   +-------------------------------+------------------------------------
-   -------------+----------------------------------+ | source |
-   relationship | target | +-------------------------------+------------
-   -------------------------------------+-------------------------------
-   ---+ | "ingressInterface" | http://localhost/
-   yang#ipfixRefersToInterface (http://localhost/
-   yang#ipfixRefersToInterface) | "ifm/interfaces/interface/index" | |
-   "egressInterface" | http://localhost/yang#ipfixRefersToInterface
-   (http://localhost/yang#ipfixRefersToInterface) |
-   "ifm/interfaces/interface/index" | +-------------------------------+-
-   ------------------------------------------------+--------------------
-   --------------+
+Appendix F.  SHACL
+
+   SHACL (Shapes Constraint Language) can be used to enhance an RDF-
+   based solution for network management by providing a formal mechanism
+   for validating the structure, content, and constraints of RDF data
+   that models network devices, configurations, and relationships.  By
+   using SHACL, you can ensure that the data adheres to predefined
+   business rules, network policies, and industry standards, thus
+   improving data quality and consistency within a network management
+   system.
+
+   Example of SHACL to validate every router that uses the BGP protocol
+   has a valid BGP ASN configured. ~~~~ ex:BGPComplianceShape a
+   sh:NodeShape ; sh:targetClass ex:Router ; sh:property [ sh:path
+   ex:routingProtocol ; sh:hasValue "bgp" ; ] ; sh:property [ sh:path
+   ex:bgpAsn ; sh:minCount 1 ; sh:datatype xsd:integer ; sh:message
+   "Routers using BGP must have a BGP ASN defined." ; ] ; ~~~~
+
+   SHACL can also be used to validate relationships between objects,
+   here is an example of a rule that says each router must be connected
+   to at least one switch.
+
+ex:RouterSwitchConnectionShape a sh:NodeShape ;
+    sh:targetClass ex:Router ;
+    sh:property [
+        sh:path ex:connectedTo ;
+        sh:class ex:Switch ;
+        sh:minCount 1 ;
+        sh:message "Each router must be connected to at least one switch." ;
+    ] ;
 
 Authors' Addresses
 
@@ -1427,6 +1501,17 @@ Authors' Addresses
    Huawei
    Belgium
    Email: benoit.claise@huawei.com
+
+
+
+
+
+
+
+
+Mackey, et al.            Expires 24 April 2025                [Page 27]
+
+Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
    Thomas Graf
@@ -1447,15 +1532,6 @@ Authors' Addresses
    Bell Canada
    Canada
    Email: daniel.voyer@bell.ca
-
-
-
-
-
-
-Mackey, et al.            Expires 20 April 2025                [Page 26]
-
-Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
    Paolo Lucente
@@ -1489,24 +1565,4 @@ Internet-Draft           Knowledge Graph NetOps             October 2024
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Mackey, et al.            Expires 20 April 2025                [Page 27]
+Mackey, et al.            Expires 24 April 2025                [Page 28]
