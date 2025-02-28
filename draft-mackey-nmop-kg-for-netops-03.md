@@ -1,7 +1,7 @@
 ---
 title: "Knowledge Graph Framework for Network Operations"
 abbrev: Knowledge Graph NetOps
-docname: draft-mackey-nmop-kg-for-netops-03
+docname: draft-mackey-nmop-kg-for-netops-02
 category: info
 
 stand_alone: true
