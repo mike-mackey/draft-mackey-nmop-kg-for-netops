@@ -5,7 +5,7 @@
 NMOP                                                           M. Mackey
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 1 September 2025                                        T. Graf
+Expires: 2 September 2025                                        T. Graf
                                                                 Swisscom
                                                                H. Keller
                                                         Deutsche Telekom
@@ -13,11 +13,11 @@ Expires: 1 September 2025                                        T. Graf
                                                              Bell Canada
                                                               P. Lucente
                                                                      NTT
-                                                        28 February 2025
+                                                            1 March 2025
 
 
             Knowledge Graph Framework for Network Operations
-                   draft-mackey-nmop-kg-for-netops-03
+                   draft-mackey-nmop-kg-for-netops-02
 
 Abstract
 
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 2 September 2025.
 
 
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 1]
+Mackey, et al.          Expires 2 September 2025                [Page 1]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 2]
+Mackey, et al.          Expires 2 September 2025                [Page 2]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
      6.5.  Creating And Using FAIR Knowledge Graphs  . . . . . . . .  15
@@ -137,37 +137,37 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
      8.6.  Bridging Organizational Silos . . . . . . . . . . . . . .  20
      8.7.  Managing Schema and Format Disparities  . . . . . . . . .  20
    9.  Translation of YANG to RDF  . . . . . . . . . . . . . . . . .  21
-   10. Knowledge Engine Postioning And Architecture  . . . . . . . .  21
+   10. Knowledge Engine Positioning And Architecture . . . . . . . .  21
      10.1.  Accessing Existing Data  . . . . . . . . . . . . . . . .  22
-   11. Some pointers to existing work for linked data  . . . . . . .  24
-     11.1.  NGSI-LD (Next Generation IoT Services Layer - Lightweight
-            Data)  . . . . . . . . . . . . . . . . . . . . . . . . .  24
-     11.2.  TMF921A Intent Management API  . . . . . . . . . . . . .  24
-   12. Next Steps for the Industry . . . . . . . . . . . . . . . . .  25
-   13. Security Considerations . . . . . . . . . . . . . . . . . . .  25
-   14. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  25
-   15. Reference . . . . . . . . . . . . . . . . . . . . . . . . . .  25
-     15.1.  Normative References . . . . . . . . . . . . . . . . . .  25
-     15.2.  Informative References (to be included)  . . . . . . . .  25
-   16. References  . . . . . . . . . . . . . . . . . . . . . . . . .  26
+     10.2.  What is materialised in RDF and what is Virtual ?  . . .  24
+   11. Implementation Status . . . . . . . . . . . . . . . . . . . .  25
+   12. Some pointers to existing work for linked data  . . . . . . .  25
+     12.1.  NGSI-LD (Next Generation IoT Services Layer - Lightweight
+            Data)  . . . . . . . . . . . . . . . . . . . . . . . . .  25
+     12.2.  TMF921A Intent Management API  . . . . . . . . . . . . .  25
+   13. Next Steps for the Industry . . . . . . . . . . . . . . . . .  25
+   14. Security Considerations . . . . . . . . . . . . . . . . . . .  26
+   15. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  26
+   16. Reference . . . . . . . . . . . . . . . . . . . . . . . . . .  26
      16.1.  Normative References . . . . . . . . . . . . . . . . . .  26
-     16.2.  Informative References . . . . . . . . . . . . . . . . .  26
-   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  28
-   Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  28
-   Appendix C.  Resource Description Framework (RDF) schema  . . . .  28
-   Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)  . .  29
-   Appendix E.  RESULT . . . . . . . . . . . . . . . . . . . . . . .  29
-   Appendix F.  SHACL  . . . . . . . . . . . . . . . . . . . . . . .  29
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  30
+     16.2.  Informative References (to be included)  . . . . . . . .  26
+   17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  26
+     17.1.  Normative References . . . . . . . . . . . . . . . . . .  26
+     17.2.  Informative References . . . . . . . . . . . . . . . . .  27
+   Appendix A.  Acknowledgments  . . . . . . . . . . . . . . . . . .  29
+   Appendix B.  Appendix . . . . . . . . . . . . . . . . . . . . . .  29
+   Appendix C.  Resource Description Framework (RDF) schema  . . . .  29
+   Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)  . .  30
+   Appendix E.  RESULT . . . . . . . . . . . . . . . . . . . . . . .  30
+   Appendix F.  SHACL  . . . . . . . . . . . . . . . . . . . . . . .  30
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  31
 
 
 
 
-
-
-Mackey, et al.          Expires 1 September 2025                [Page 3]
+Mackey, et al.          Expires 2 September 2025                [Page 3]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 1.  Introduction
@@ -183,7 +183,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
    The RFC3535 requirements were instrumental in developing first the
    NETCONF protocol (in the NETCONF Working Group) [RFC6241], the
-   associated YANG data modeling language (in the NETMOD Working Group)
+   associated YANG data modelling language (in the NETMOD Working Group)
    [RFC7950], RESTCONF [RFC8040], and most recently CORECONF
    [I-D.ietf-core-comi].
 
@@ -205,15 +205,15 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    of an information model is to model managed objects at a conceptual
    level, independent of any specific implementations or protocols used
    to transport the data.  The degree of specificity (or detail) of the
-   abstractions defined in the information model depends on the modeling
-   needs of its designers.  In order to make the overall design as clear
-   as possible, an information model should hide all protocol and
-   implementation details.  Another important characteristic of an
-   information model is that it defines relationships between managed
-   objects."
+   abstractions defined in the information model depends on the
+   modelling needs of its designers.  In order to make the overall
+   design as clear as possible, an information model should hide all
+   protocol and implementation details.  Another important
+   characteristic of an information model is that it defines
+   relationships between managed objects."
 
    *An information model*, typically expressed in a language such as
-   Unified Modeling Language (UML) do not generate the full APIs, as it
+   Unified modelling Language (UML) do not generate the full APIs, as it
    lacks some of the implementation- and protocol-specific details; for
    example, rules that explain how to map managed objects onto lower-
    level protocol constructs.
@@ -221,9 +221,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 4]
+Mackey, et al.          Expires 2 September 2025                [Page 4]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    *A data model*, on the other end, can directly be used for network
@@ -277,14 +277,15 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 5]
+Mackey, et al.          Expires 2 September 2025                [Page 5]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
-   modeling language simplifies the situation, if used for both config
-   and streaming but some extra correlation might anyway be required
-   beyond the data model.
+   modelling
+   language simplifies the situation, if used for both config and
+   streaming but some extra correlation might anyway be required beyond
+   the data model.
 
 2.5.  Data Storage and Format Disparities
 
@@ -329,14 +330,15 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    the PE router, it actually depends if we refer to CE-facing or PE-
    facing interface).  As a different example, understanding whether a
    link serves as a primary connection for certain customers or a backup
-   for others is critical but frequently ambiguous.
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 6]
+Mackey, et al.          Expires 2 September 2025                [Page 6]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
+
+   for others is critical but frequently ambiguous.
 
 2.8.  Data Collection Methods and Interpretation
 
@@ -379,19 +381,17 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 2.11.  Machine Readable Knowledge
 
    While we mentioned multiple data sources, with different data
-   modeling languages, the requirement is to have one data sources in a
+   modelling languages, the requirement is to have one data sources in a
    machine readable way, with the ability to correlate and link
    information.
-   Note that, sometimes, the modeling language is simply not existent,
+   Note that, sometimes, the modelling language is simply not existent,
    as protocols such as BMP or BGP-LS directly stream PDUs.
 
 
 
-
-
-Mackey, et al.          Expires 1 September 2025                [Page 7]
+Mackey, et al.          Expires 2 September 2025                [Page 7]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 3.  IETF Initiatives
@@ -445,9 +445,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 8]
+Mackey, et al.          Expires 2 September 2025                [Page 8]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    or add new information.  This model and API soup results in confusion
@@ -485,9 +485,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    application schema need to be extended)
 
    What if we could answer all of those questions by querying the
-   connections connections between schemas and data.  What if we could
-   trace the connections across different applications and different
-   design artefacts.
+   connections between schemas and data.  What if we could trace the
+   connections across different applications and different design
+   artefacts.
 
 4.3.  Different Models For Different Jobs
 
@@ -501,9 +501,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025                [Page 9]
+Mackey, et al.          Expires 2 September 2025                [Page 9]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    different ways to model the same type of information.
@@ -557,9 +557,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 10]
+Mackey, et al.          Expires 2 September 2025               [Page 10]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    *  How to map with interface concept with the syslog message, where
@@ -603,9 +603,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    operator can understand but in a way a machine can easily interpret
    and make decisions.
 
-   This is the key to moving from Automation to Autonomy and we believe
-   one of the keys to unlocking autonomy is to leverage Knowledge
-   Engineering and Knowledge Based Systems (KBS)
+   This is the key to moving from Automation to Autonomy and one of the
+   keys to unlocking autonomy is to leverage Knowledge Engineering and
+   Knowledge Based Systems (KBS)
 
 
 
@@ -613,19 +613,19 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 11]
+Mackey, et al.          Expires 2 September 2025               [Page 11]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 4.6.  The Limits of YANG as THE Model Language
 
    While YANG is deployed data model for configuration and monitoring,
    YANG has limitations that prevent it to be THE model to which other
-   data models will be mapped.  Instead, we believe that the different
-   data models will still have a life of their own (ex: the IPFIX model
-   does a good job for its purpose).  Therefore let use introduce
-   knowledge graph concepts, which will address the challenges.
+   data models will be mapped.  Instead, the different data models will
+   still have a life of their own (ex: the IPFIX model does a good job
+   for its purpose).  Therefore let use introduce knowledge graph
+   concepts, which will address the challenges.
 
    TO BE COMPLETED.
 
@@ -669,9 +669,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 12]
+Mackey, et al.          Expires 2 September 2025               [Page 12]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 5.2.  Inference Engine
@@ -725,9 +725,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 13]
+Mackey, et al.          Expires 2 September 2025               [Page 13]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    *  *Adaptability*: The capability to update and refine the knowledge
@@ -781,9 +781,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 14]
+Mackey, et al.          Expires 2 September 2025               [Page 14]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 6.5.  Creating And Using FAIR Knowledge Graphs
@@ -820,7 +820,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
       “triple stores” or RDF based Graph Databases.
 
    There is ways for these two worlds to converge though, there is
-   current work within the w3c to add propertys to edges in RDF.  This
+   current work within the w3c to add properties to edges in RDF.  This
    work RDF-star (https://w3c.github.io/rdf-star/cg-spec/
    editors_draft.html) (RDF-_) and SPARQL-star (SPARQL-_) at time of
    writing is ongoing in the W3C.
@@ -837,9 +837,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 15]
+Mackey, et al.          Expires 2 September 2025               [Page 15]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 7.  Introduction to the Semantic Web Technology Stack
@@ -893,9 +893,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 16]
+Mackey, et al.          Expires 2 September 2025               [Page 16]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    equivalent and disjoint classes, enabling more precise and
@@ -949,9 +949,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 17]
+Mackey, et al.          Expires 2 September 2025               [Page 17]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    SHACL allows you to encode these policies as constraints and
@@ -986,7 +986,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    planes - Management, Control, and Data.  Semantic Web technologies
    are designed to handle large datasets efficiently:
 
-   *  *RDF (Resource Description Framework)* enables the modeling of
+   *  *RDF (Resource Description Framework)* enables the modelling of
       data as a directed graph, allowing for flexible and scalable data
       representation.
 
@@ -1005,9 +1005,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 18]
+Mackey, et al.          Expires 2 September 2025               [Page 18]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    *  *URI/IRI* provides a unique way to identify and link resources
@@ -1061,9 +1061,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 19]
+Mackey, et al.          Expires 2 September 2025               [Page 19]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 8.5.  Enhanced Fault Prediction and Automated Remediation
@@ -1117,9 +1117,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 20]
+Mackey, et al.          Expires 2 September 2025               [Page 20]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 9.  Translation of YANG to RDF
@@ -1153,11 +1153,11 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    seen that YANG is very much a good fit for modelling as knowledge in
    RDF give both formats close association to XML.
 
-10.  Knowledge Engine Postioning And Architecture
+10.  Knowledge Engine Positioning And Architecture
 
-   Below shows the basic postioning of the Knowledge Engine in any OSS
-   system.  As you can see we believe the Knowledge Engine is at the
-   heart of any decision making process.
+   Below shows the basic positioning of the Knowledge Engine in any OSS
+   system.  As you can see the Knowledge Engine is at the heart of any
+   decision making process.
 
    Key to this is the ability to consume and connect data from multiple
    different datasources and to connect them in a single semantic layer.
@@ -1173,13 +1173,13 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 21]
+Mackey, et al.          Expires 2 September 2025               [Page 21]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
-   This 360 degree view of the network we believe is the only way the
-   secrets of the network can be unlocked.
+   This 360 degree view of the network is the only way the secrets of
+   the network can be unlocked and autonomous networks enabled.
 
                                       |
                                       | Operator Intent
@@ -1205,7 +1205,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
                |   |          +-------v--------+       |   |
                |   |          |                |       |   |Telemetry
    Configuration   +---------->   Digital      <-------+   |(YANG Push,
-   (Netconf, PCEP             |   Twin         |           | IPFIX, BMP
+   (Netconf,   |              |   Twin         |           | IPFIX, BMP
     SNMP  )    |              |                |           | gNMI,SNMP)
                |              +----------------+           |
                |                                           |
@@ -1220,7 +1220,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
    A key enabler that allows the information in all these systems to be
    exposed and connected is the Virtual Knowledge Graph.  Originally
-   called Ontology Based Data Managenent (OBDA), it is a collection of
+   called Ontology Based Data Management (OBDA), it is a collection of
    techniques and technologies that help overcome the challenge of
    combining data from different sources and formats.  It uses
    ontologies to create a unified view of this data, and mappings to
@@ -1229,9 +1229,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 22]
+Mackey, et al.          Expires 2 September 2025               [Page 22]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    OBDA has evolved through three main stages:
@@ -1285,9 +1285,9 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 23]
+Mackey, et al.          Expires 2 September 2025               [Page 23]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
                         +---------------------+
@@ -1302,24 +1302,68 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
            |                   |                 |                 |
            |                   |                 |                 |
 +----------v--------+ +--------v-------+ +-------v---------+ +-----v-----------+
-|  Virtual SPARQL   | | Virtual SPARQL | | Virtual SPARQL  | |  Virtual SPARQL |
-|  Endpoint (RDBMS) | | Endpoint (API) | | Endpoint (TSDB) | |  Endpoint (GDB) |
+|  Virtual SPARQL   | | Virtual SPARQL | | Virtual SPARQL  | | SPARQL          |
+|  Endpoint (RDBMS) | | Endpoint (API) | | Endpoint (TSDB) | | Endpoint (RDFDB)|
 +-----------+-------+ +--------+-------+ +-------+---------+ +-----+-----------+
             |                  |                 |                 |
             |                  |                 |                 |
       +-----v------+    +------v------+   +------v-----+  +--------v-----+
-      |   RDBMS    |    |   API       |   |   TSDB     |  |    GDB       |
+      |   RDBMS    |    |   API       |   |   TSDB     |  |    RDFDB     |
       |  Database  |    |  Service    |   |  Database  |  |   Database   |
       +------------+    +-------------+   +------------+  +--------------+
 
-11.  Some pointers to existing work for linked data
+   In the Virtual Knowledge Graph (or Ontology Based Data Access) the
+   remote schema can be imported as RDF/OWL data and used for both query
+   and for creating new relationships over existing data.  In this way
+   existing models can be imported and the connections between silos can
+   overlaid as extra knowledge.  These relationships can be created
+   manually or programmatically.
+
+   At query time, these relationships can be exploited to join data from
+   different sources, allowing the connection between anomaly to
+   assurance metric to inventory object to digital map to configuration
+   to be traced seamlessly regardless of where the information is being
+   stored.
+
+10.2.  What is materialised in RDF and what is Virtual ?
+
+   Given the above, you may ask what is materialised in the Graph DB and
+   what is virtual, of course the answer as always is, it depends.  If
+   you have a read API that lets you access the remote data anyway you
+   want it e.g. JDBC then maybe virtual is good enough.  If however you
+   have a restricted API that makes it difficult to query and join data
+   (e.g. Netconf/Restconf) you may want to import that data into the
+   graph in order to satisfy all of your queries.  For this reason we
+   have focused the initial implementation on materializing YANG schema
+   and YANG Instance data.
+
+
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 24]
+
+Internet-Draft           Knowledge Graph NetOps               March 2025
+
+
+11.  Implementation Status
+
+   At IETF Hackathon 121 (Dublin) we successfully demonstrated an
+   approach for translation of YANG schema models to a representation in
+   RDF.  This code is available here: https://github.com/Huawei-IOAM/
+   yang2rdf.
+
+   At IETF Hackathon 122 (Bangkok) we will demonstrate how that YANG RDF
+   Schema data can be used to create RDF versions of configuration data.
+
+12.  Some pointers to existing work for linked data
 
    Linked data and semantic web has already been embraced by TMF and
    ETSI, their reasons for adoption are both valid both for them and for
    the IETF when aiming to link data in different systems and to capture
    knowledge.
 
-11.1.  NGSI-LD (Next Generation IoT Services Layer - Lightweight Data)
+12.1.  NGSI-LD (Next Generation IoT Services Layer - Lightweight Data)
 
    *NGSI-LD* is an ETSI standardized framework for representing and
    managing context information in the Internet of Things (IoT) domain.
@@ -1329,22 +1373,12 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    graphs. *Semantic Foundation:* Based on RDF (Resource Description
    Framework) for formal semantics and linked data principles.
 
-11.2.  TMF921A Intent Management API
+12.2.  TMF921A Intent Management API
 
    *TMF tmf921a* is an API for intent based networking.  It aims to
    provide a standardized interface for expressing and managing high-
    level network intents, enabling automated network configuration and
    optimization.
-
-
-
-
-
-
-Mackey, et al.          Expires 1 September 2025               [Page 24]
-
-Internet-Draft           Knowledge Graph NetOps            February 2025
-
 
    *Knowledge Based Reasoning:* Core to the TMF approach is the ability
    for the intent management functions to "use reason intrinsically by
@@ -1352,7 +1386,7 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    to model the intents as knowledge and to use *RDF* to define the
    intents.
 
-12.  Next Steps for the Industry
+13.  Next Steps for the Industry
 
    It's important to note, the authors are not proposing creating a new
    model for the network, there is much work being done in all of the
@@ -1360,6 +1394,14 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    network and business.  The authors are proposing ways to connect all
    of this data and through those connections find the semantic of the
    information and allow it to unlock the knowledge already being
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 25]
+
+Internet-Draft           Knowledge Graph NetOps               March 2025
+
+
    generated by the network.
 
    To this end, the industry must come together to define ways to
@@ -1373,19 +1415,19 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    and repositories can be referenced, linked and enriched using the
    power of Knowledge graphs and linked data.
 
-13.  Security Considerations
+14.  Security Considerations
 
    TBC
 
-14.  IANA Considerations
+15.  IANA Considerations
 
    This document has no actions for IANA.
 
-15.  Reference
+16.  Reference
 
-15.1.  Normative References
+16.1.  Normative References
 
-15.2.  Informative References (to be included)
+16.2.  Informative References (to be included)
 
    *  RDF 1.1 Concepts and Abstract Syntax.  W3C Recommendation, 2014.
 
@@ -1394,27 +1436,33 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
    *  OWL 2 Web Ontology Language Document Overview.  W3C
       Recommendation, 2012.
 
-
-
-
-Mackey, et al.          Expires 1 September 2025               [Page 25]
-
-Internet-Draft           Knowledge Graph NetOps            February 2025
-
-
    *  SPARQL 1.1 Query Language.  W3C Recommendation, 2013.
 
    *  SHACL - Shapes Constraint Language.  W3C Recommendation, 2017.
 
-16.  References
+   *  R2RML - RDB to RDF Mapping Language.  W3C Recommendation, 2012.
 
-16.1.  Normative References
+   *  RML - Extend R2RML to allow mapping from any data source.  v1.1.2,
+      2024.
+
+17.  References
+
+17.1.  Normative References
+
+
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 26]
+
+Internet-Draft           Knowledge Graph NetOps               March 2025
+
 
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
 
-16.2.  Informative References
+17.2.  Informative References
 
    [I-D.havel-nmop-digital-map]
               Havel, O., Claise, B., de Dios, O. G., Elhassany, A., and
@@ -1448,16 +1496,6 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
               DOI 10.17487/RFC3164, August 2001,
               <https://www.rfc-editor.org/rfc/rfc3164>.
 
-
-
-
-
-
-Mackey, et al.          Expires 1 September 2025               [Page 26]
-
-Internet-Draft           Knowledge Graph NetOps            February 2025
-
-
    [RFC3418]  Presuhn, R., Ed., "Management Information Base (MIB) for
               the Simple Network Management Protocol (SNMP)", STD 62,
               RFC 3418, DOI 10.17487/RFC3418, December 2002,
@@ -1467,6 +1505,14 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
               Information Models and Data Models", RFC 3444,
               DOI 10.17487/RFC3444, January 2003,
               <https://www.rfc-editor.org/rfc/rfc3444>.
+
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 27]
+
+Internet-Draft           Knowledge Graph NetOps               March 2025
+
 
    [RFC3535]  Schoenwaelder, J., "Overview of the 2002 IAB Network
               Management Workshop", RFC 3535, DOI 10.17487/RFC3535, May
@@ -1507,18 +1553,22 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
               DOI 10.17487/RFC8299, January 2018,
               <https://www.rfc-editor.org/rfc/rfc8299>.
 
-
-
-Mackey, et al.          Expires 1 September 2025               [Page 27]
-
-Internet-Draft           Knowledge Graph NetOps            February 2025
-
-
    [RFC8907]  Dahm, T., Ota, A., Medway Gash, D.C., Carrel, D., and L.
               Grant, "The Terminal Access Controller Access-Control
               System Plus (TACACS+) Protocol", RFC 8907,
               DOI 10.17487/RFC8907, September 2020,
               <https://www.rfc-editor.org/rfc/rfc8907>.
+
+
+
+
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 28]
+
+Internet-Draft           Knowledge Graph NetOps               March 2025
+
 
    [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
               Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
@@ -1565,9 +1615,15 @@ Appendix C.  Resource Description Framework (RDF) schema
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 28]
+
+
+
+
+
+
+Mackey, et al.          Expires 2 September 2025               [Page 29]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
 Appendix D.  SPARQL Protocol and RDF Query Language (SPARQL)
@@ -1621,9 +1677,9 @@ Appendix F.  SHACL
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 29]
+Mackey, et al.          Expires 2 September 2025               [Page 30]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    ex:routingProtocol ; sh:hasValue "bgp" ; ] ; sh:property [ sh:path
@@ -1677,9 +1733,9 @@ Authors' Addresses
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 30]
+Mackey, et al.          Expires 2 September 2025               [Page 31]
 
-Internet-Draft           Knowledge Graph NetOps            February 2025
+Internet-Draft           Knowledge Graph NetOps               March 2025
 
 
    Email: daniel.voyer@bell.ca
@@ -1733,4 +1789,4 @@ Internet-Draft           Knowledge Graph NetOps            February 2025
 
 
 
-Mackey, et al.          Expires 1 September 2025               [Page 31]
+Mackey, et al.          Expires 2 September 2025               [Page 32]

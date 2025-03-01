@@ -84,7 +84,7 @@ data models, along with some recommendations for the IETF.
 
 The RFC3535 requirements were instrumental in developing first the
 NETCONF protocol (in the NETCONF Working Group) {{?RFC6241}}, the
-associated YANG data modeling language (in the NETMOD Working Group)
+associated YANG data modelling language (in the NETMOD Working Group)
 {{?RFC7950}}, RESTCONF {{?RFC8040}}, and most recently CORECONF
 {{?I-D.ietf-core-comi}}.
 
@@ -104,14 +104,14 @@ Quoting RFC 3444 {{?RFC3444}}, "The main purpose of an information model is to m
 managed objects at a conceptual level, independent of any specific
 implementations or protocols used to transport the data. The degree of
 specificity (or detail) of the abstractions defined in the information
-model depends on the modeling needs of its designers. In order to make
+model depends on the modelling needs of its designers. In order to make
 the overall design as clear as possible, an information model should
 hide all protocol and implementation details. Another important
 characteristic of an information model is that it defines relationships
 between managed objects."
 
 **An information model**, typically expressed in a language such as Unified
-Modeling Language (UML) do not generate the full APIs, as it lacks some
+modelling Language (UML) do not generate the full APIs, as it lacks some
 of the implementation- and protocol-specific details; for example, rules
 that explain how to map managed objects onto lower-level protocol
 constructs.
@@ -161,7 +161,7 @@ customer experience. However, the process of linking management plane
 data with control plane and data plane information, is to provide a coherent
 connectivity service with customer perspective is extremely challenging. Even as
 a simpler challenge, it's not always easy to correlate the configuration management 
-plane information with the streamed operational data: YANG, as a data modeling 
+plane information with the streamed operational data: YANG, as a data modelling  
 language simplifies the situation, if used for both config and streaming but
 some extra correlation might anyway be required beyond the data model.
 
@@ -244,10 +244,10 @@ multiple sources of truth in networking:
 
 ## Machine Readable Knowledge
 
-While we mentioned multiple data sources, with different data modeling languages,
+While we mentioned multiple data sources, with different data modelling languages,
 the requirement is to have one data sources in a machine readable way,
 with the ability to correlate and link information.  
-Note that, sometimes, the modeling language is simply not existent, as protocols 
+Note that, sometimes, the modelling language is simply not existent, as protocols 
 such as BMP or BGP-LS directly stream PDUs.
 
 
@@ -316,9 +316,9 @@ hardware version is buried within the different applications, the mapping
 code that transforms data between models, the impact on existing models (is
  a new instance enough or does the application schema need to be extended)
 
-What if we could answer all of those questions by querying the connections
-connections between schemas and data. What if we could trace the connections
-across different applications and different design artefacts. 
+What if we could answer all of those questions by querying the connections 
+between schemas and data. What if we could trace the connections across 
+different applications and different design artefacts. 
 
 
 ## Different Models For Different Jobs
@@ -413,7 +413,7 @@ questions that an operator has.
 What if we could provide this information not only in a format the operator 
 can understand but in a way a machine can easily interpret and make decisions.
 
-This is the key to moving from Automation to Autonomy and we believe one of the
+This is the key to moving from Automation to Autonomy and one of the
 keys to unlocking autonomy is to leverage Knowledge Engineering and Knowledge
 Based Systems (KBS)
 
@@ -421,8 +421,8 @@ Based Systems (KBS)
 
 While YANG is deployed data model for configuration and monitoring, YANG has
 limitations that prevent it to be THE model to which other data models will be 
-mapped. Instead, we believe that the different data models will still have a life 
-of their own (ex: the IPFIX model does a good job for its purpose). Therefore let use
+mapped. Instead, the different data models will still have a life of their own 
+(ex: the IPFIX model does a good job for its purpose). Therefore let use 
 introduce knowledge graph concepts, which will address the challenges.
 
 TO BE COMPLETED.
@@ -578,7 +578,7 @@ graphs across databases e.g. neo4j fabric, federation is built into SPARQL the
 W3C standard for querying “triple stores” or RDF based Graph Databases.
 
 There is ways for these two worlds to converge though, there is current work 
-within the w3c to add propertys to edges in RDF. This work [RDF-star](https://w3c.github.io/rdf-star/cg-spec/editors_draft.html)
+within the w3c to add properties to edges in RDF. This work [RDF-star](https://w3c.github.io/rdf-star/cg-spec/editors_draft.html)
 (RDF-*) and SPARQL-star (SPARQL-*) at time of writing is ongoing in the W3C. 
 
 Similarly, Neo4j has a plugin "Neosemantics" that enables the use of RDF data
@@ -706,7 +706,7 @@ Modern network operators collect extensive data from various network
 planes - Management, Control, and Data. Semantic Web technologies are
 designed to handle large datasets efficiently:
 
-- **RDF (Resource Description Framework)** enables the modeling of data
+- **RDF (Resource Description Framework)** enables the modelling of data
   as a directed graph, allowing for flexible and scalable data
   representation.
 
@@ -842,10 +842,10 @@ There are obvious trade offs to be explored but it can be seen that YANG is
 very much a good fit for modelling as knowledge in RDF give both formats close
 association to XML.     
 
-# Knowledge Engine Postioning And Architecture
+# Knowledge Engine Positioning And Architecture
 
-Below shows the basic postioning of the Knowledge Engine in any OSS system. As 
-you can see we believe the Knowledge Engine is at the heart of any decision 
+Below shows the basic positioning of the Knowledge Engine in any OSS system. As 
+you can see the Knowledge Engine is at the heart of any decision 
 making process. 
 
 Key to this is the ability to consume and connect data from multiple different
@@ -858,8 +858,8 @@ that the value on the intent api that is mapped to a value on the fulfillment
 api that is used to configure this part of the device is connected to the 
 Telemetry metric that was received where an anomaly was observed. 
 
-This 360 degree view of the network we believe is the only way the secrets of 
-the network can be unlocked.  
+This 360 degree view of the network is the only way the secrets of the network
+can be unlocked and autonomous networks enabled.  
 
 ~~~~
                                    |                                
@@ -886,7 +886,7 @@ the network can be unlocked.
             |   |          +-------v--------+       |   |           
             |   |          |                |       |   |Telemetry  
 Configuration   +---------->   Digital      <-------+   |(YANG Push,
-(Netconf, PCEP             |   Twin         |           | IPFIX, BMP
+(Netconf,   |              |   Twin         |           | IPFIX, BMP
  SNMP  )    |              |                |           | gNMI,SNMP)
             |              +----------------+           |           
             |                                           |           
@@ -901,7 +901,7 @@ Configuration   +---------->   Digital      <-------+   |(YANG Push,
 ## Accessing Existing Data
 A key enabler that allows the information in all these systems to be exposed and
 connected is the Virtual Knowledge Graph. Originally called Ontology Based Data
-Managenent (OBDA), it is a collection of techniques and technologies that help 
+Management (OBDA), it is a collection of techniques and technologies that help 
 overcome the challenge of combining data from different sources and formats. 
 It uses ontologies to create a unified view of this data, and mappings to link 
 the ontology with the individual data sources.
@@ -947,16 +947,45 @@ making it a powerful alternative for modern data integration needs.
            |                   |                 |                 |                    
            |                   |                 |                 |                    
 +----------v--------+ +--------v-------+ +-------v---------+ +-----v-----------+        
-|  Virtual SPARQL   | | Virtual SPARQL | | Virtual SPARQL  | |  Virtual SPARQL |        
-|  Endpoint (RDBMS) | | Endpoint (API) | | Endpoint (TSDB) | |  Endpoint (GDB) |        
+|  Virtual SPARQL   | | Virtual SPARQL | | Virtual SPARQL  | | SPARQL          |        
+|  Endpoint (RDBMS) | | Endpoint (API) | | Endpoint (TSDB) | | Endpoint (RDFDB)|        
 +-----------+-------+ +--------+-------+ +-------+---------+ +-----+-----------+        
             |                  |                 |                 |                    
             |                  |                 |                 |                    
       +-----v------+    +------v------+   +------v-----+  +--------v-----+              
-      |   RDBMS    |    |   API       |   |   TSDB     |  |    GDB       |              
+      |   RDBMS    |    |   API       |   |   TSDB     |  |    RDFDB     |              
       |  Database  |    |  Service    |   |  Database  |  |   Database   |              
       +------------+    +-------------+   +------------+  +--------------+              
 ~~~~
+
+In the Virtual Knowledge Graph (or Ontology Based Data Access) the remote schema
+can be imported as RDF/OWL data and used for both query and for creating new 
+relationships over existing data. In this way existing models can be imported 
+and the connections between silos can overlaid as extra knowledge. These 
+relationships can be created manually or programmatically. 
+
+At query time, these relationships can be exploited to join data from different
+sources, allowing the connection between anomaly to assurance metric to inventory 
+object to digital map to configuration to be traced seamlessly regardless of 
+where the information is being stored.  
+
+## What is materialised in RDF and what is Virtual ?
+Given the above, you may ask what is materialised in the Graph DB and what is 
+virtual, of course the answer as always is, it depends. If you have a read API
+that lets you access the remote data anyway you want it e.g. JDBC then maybe 
+virtual is good enough. If however you have a restricted API that makes it 
+difficult to query and join data (e.g. Netconf/Restconf) you may want to import
+that data into the graph in order to satisfy all of your queries. For this 
+reason we have focused the initial implementation on materializing YANG schema
+and YANG Instance data. 
+
+# Implementation Status
+At IETF Hackathon 121 (Dublin) we successfully demonstrated an approach for 
+translation of YANG schema models to a representation in RDF. This code is 
+available here: https://github.com/Huawei-IOAM/yang2rdf.
+
+At IETF Hackathon 122 (Bangkok) we will demonstrate how that YANG RDF Schema 
+data can be used to create RDF versions of configuration data.  
 
 # Some pointers to existing work for linked data
 Linked data and semantic web has already been embraced by TMF and ETSI, their 
@@ -1025,6 +1054,10 @@ This document has no actions for IANA.
 - SPARQL 1.1 Query Language. W3C Recommendation, 2013.
 
 - SHACL - Shapes Constraint Language. W3C Recommendation, 2017.
+
+- R2RML - RDB to RDF Mapping Language. W3C Recommendation, 2012.
+
+- RML - Extend R2RML to allow mapping from any data source.  v1.1.2, 2024.
 
 --- back
 
