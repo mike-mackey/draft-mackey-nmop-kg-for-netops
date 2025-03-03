@@ -49,14 +49,31 @@ author:
     code: 3771
     country: Netherlands
     email: paolo@ntt.net
+  -
+    fullname: Ignacio Dominguez Martinez-Casanueva
+    org: Telefonica
+    country: Spain
+    email: ignacio.dominguezmartinez@telefonica.com
 
 contributor:
   
 normative:
 
 informative:
-
-   Catalog:
+  ANSA:
+    title: "Application of Category Theory to Network Service Fault Detection. IEEE Open Journal of the Communications Society 5 (2024): 4417-4443."
+    author:
+      organization: Pedro Martinez-Julia, Ved P. Kafle, Hitoshi Asaeda.
+  EERVC:
+    title: "Exploiting External Events for Resource Adaptation in Virtual Computer and Network Systems, IEEE Transactions on Network and Service Management 15 (2018): 555-566."
+    author:
+      organization: Pedro Martinez-Julia, Ved P. Kafle, Hiroaki Harai.
+  TKDP:
+    title: "Telemetry Knowledge Distributed Processing for Network Digital Twins and Network Resilience. NOMS 2023-2023 IEEE/IFIP Network Operations and Management Symposium (2023): 1-6."
+    author:
+      organization: Pedro Martinez-Julia, Ved P. Kafle, Hitoshi Asaeda.
+    
+Catalog:
 
 --- abstract
 
@@ -669,8 +686,9 @@ deviceType (e.g., router, switch) and an associated IP address, and that routers
 have specific attributes such as a bgpAsn (BGP Autonomous System Number).
 
 ### Validating Relationships 
-For relationships between objects, SHACL allows you to validate these interconnections 
-by specifying shapes that ensure the correct relationships are maintained.
+For relationships between objects, SHACL allows you to validate these 
+interconnections by specifying shapes that ensure the correct relationships 
+are maintained.
 
 ### Enforcing Network Policies
 In network management, policies can dictate how devices are configured and how 
@@ -813,7 +831,32 @@ It's not only about protocol and models (IETF), we can link to the
 NMS/OSS layers, from the top down to the bottom up ... but also (business)
 intent, the BSS.
 
-# Translation of YANG to RDF
+# YANG and RDF
+As mentioned above, there are more than enough models already in the telecom
+domain. Chief among them (from the IETF point of view) is YANG. The YANG 
+modelling language already has many ways to augement and extend the model, but
+these extensions are very formal and not very dynamic. 
+
+## Data catalog for YANG data sources
+The flexibility and extensibility of knowledge graphs have made them a popular
+choice for implementing data catalogs. The purpose of a data catalog is to 
+provide consumers with a registry of datasets exposed by data sources where to
+find data of interest. Additionally, these datasets can be linked to the 
+(business) concepts that they refer to, so that consumers can search for 
+datasets based on relevant concepts such as “interface”. 
+
+Knowledge graphs can enable the YANG Catalog to evolve towards a data catalog,
+where the YANG modules represent datasets of interest. The dependencies 
+between YANG models (import, deviations, augments) can be naturally represented
+in the knowledge graph. In turn, these YANG models can be linked with concepts
+that are represented in ontologies.
+
+Additionally, these YANG models, can be combined with the implementation 
+details of network devices yang lib augment 
+{{?I-D.lincla-netconf-yang-library-augmentation}} that
+could be part of an inventory {{?I-D.ietf-ivy-network-inventory-yang}}.
+
+## Translation of YANG to RDF
 
 Since the original YANG specification {{?RFC6020}}, IETF has embraced YANG as 
 the way to define any new models or APIs, from the device all the way up the 
@@ -842,6 +885,7 @@ There are obvious trade offs to be explored but it can be seen that YANG is
 very much a good fit for modelling as knowledge in RDF give both formats close
 association to XML.     
 
+
 # Knowledge Engine Positioning And Architecture
 
 Below shows the basic positioning of the Knowledge Engine in any OSS system. As 
@@ -854,8 +898,8 @@ datasources and to connect them in a single semantic layer.
 Note as mentioned above, there are already many models that exist in 
 telecommunication systems, the goal maybe not to create a new model but to 
 provide a simple way to navigate between the existing models. Understanding 
-that the value on the intent api that is mapped to a value on the fulfillment 
-api that is used to configure this part of the device is connected to the 
+that the value on the intent API that is mapped to a value on the fulfillment 
+API that is used to configure this part of the device is connected to the 
 Telemetry metric that was received where an anomaly was observed. 
 
 This 360 degree view of the network is the only way the secrets of the network
@@ -897,6 +941,46 @@ Configuration   +---------->   Digital      <-------+   |(YANG Push,
    |                                                               |
    +---------------------------------------------------------------+
 ~~~~
+
+## Key Use Cases For Knowledge Engine
+
+The above shows the target for Autonomous networks and automated decision
+processing, but for each step the Knowledge Engine can play a key role. 
+
+### Service Intent Translation
+A knowledge graph can facilitate intent translation the operator intent to 
+the network intent by providing a unified way to query the digital twin 
+{{?I-D.irtf-nmrg-network-digital-twin-arch}}.The ability to integrate 
+heterogenous silos of data, in combination with the explicit representation 
+of the semantics of the data; making the knowledge graph a powerful technology
+for building and connecting data across different datasource.
+
+The capability to represent abstract concepts by means of ontologies,
+enables the representations of a generic network digital twins, regardless of
+the complexities of the underlying technologies.
+For example, an abstract representation of a network topology Digital Map 
+{{?I-D.havel-nmop-digital-map}} in the knowledge graph can be translated into 
+a descriptor or data model that is specific to the technology used.
+
+### Contextualized telemetry data
+Having context of how YANG telemetry data 
+{{?I-D.ietf-opsawg-collected-data-manifest}} is being collected can improve 
+the understanding of the data for network analytics or closed-loop automation.
+Knowledge graphs  can help in this task by linking the collected data with**:
+(i) the metadata that characterizes the platform producing
+the data; and (ii) the metadata that characterizes how and
+when the data were metered.
+
+### Anomaly detection and incident management 
+Knowledge graphs can help in the detection of anomalies in network systems by
+linking event/metric data (e.g. logs, alarms, and ticketing) with the context
+(digitial twin/network configuration). The Knowledge graph enables the 
+connecting of these events using the context to link and explore for new 
+connections.
+
+### Network Rectification:  
+Combing all of the above to enable the OSS to respond to issues in the network
+and automatically generate a change in the network to rectify the problem. 
 
 ## Accessing Existing Data
 A key enabler that allows the information in all these systems to be exposed and
