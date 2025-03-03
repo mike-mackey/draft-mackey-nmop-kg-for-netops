@@ -134,7 +134,7 @@ that explain how to map managed objects onto lower-level protocol
 constructs.
 
 **A data model**, on the other end, can directly be used for network
-automation. As an example, YANG data models {{!RFC7950}} can generate an
+automation. As an example, YANG data models {{!RFC7950}} can generate
 APIs, to be accessed by protocols such as NETCONF and RESTCONF.
 
 
@@ -594,7 +594,7 @@ in many situations are URLs it makes it easy to resolve any item in RDF graph.
 graphs across databases e.g. neo4j fabric, federation is built into SPARQL the
 W3C standard for querying “triple stores” or RDF based Graph Databases.
 
-There is ways for these two worlds to converge though, there is current work 
+There are ways for these two worlds to converge though, there is current work 
 within the w3c to add properties to edges in RDF. This work [RDF-star](https://w3c.github.io/rdf-star/cg-spec/editors_draft.html)
 (RDF-*) and SPARQL-star (SPARQL-*) at time of writing is ongoing in the W3C. 
 
@@ -834,7 +834,7 @@ intent, the BSS.
 # YANG and RDF
 As mentioned above, there are more than enough models already in the telecom
 domain. Chief among them (from the IETF point of view) is YANG. The YANG 
-modelling language already has many ways to augement and extend the model, but
+modelling language already has many ways to augment and extend the model, but
 these extensions are very formal and not very dynamic. 
 
 ## Data catalog for YANG data sources
@@ -985,7 +985,7 @@ and automatically generate a change in the network to rectify the problem.
 ## Accessing Existing Data
 A key enabler that allows the information in all these systems to be exposed and
 connected is the Virtual Knowledge Graph. Originally called Ontology Based Data
-Management (OBDA), it is a collection of techniques and technologies that help 
+Access (OBDA), it is a collection of techniques and technologies that help 
 overcome the challenge of combining data from different sources and formats. 
 It uses ontologies to create a unified view of this data, and mappings to link 
 the ontology with the individual data sources.
@@ -1054,14 +1054,14 @@ object to digital map to configuration to be traced seamlessly regardless of
 where the information is being stored.  
 
 ## What is materialised in RDF and what is Virtual ?
-Given the above, you may ask what is materialised in the Graph DB and what is 
-virtual, of course the answer as always is, it depends. If you have a read API
-that lets you access the remote data anyway you want it e.g. JDBC then maybe 
-virtual is good enough. If however you have a restricted API that makes it 
-difficult to query and join data (e.g. Netconf/Restconf) you may want to import
-that data into the graph in order to satisfy all of your queries. For this 
-reason we have focused the initial implementation on materializing YANG schema
-and YANG Instance data. 
+Given the above, you may ask what is materialised in the triple store and what 
+is virtual, of course the answer as always is, it depends. If you have a read 
+API that lets you access the remote data anyway you want it e.g. JDBC then 
+maybe virtual is good enough. If however you have a restricted API that makes 
+it difficult to query and join data (e.g. Netconf/Restconf) you may want to 
+import that data into the graph in order to satisfy all of your queries. For
+this reason we have focused the initial implementation on materializing YANG 
+schema and YANG Instance data. 
 
 # Implementation Status
 At IETF Hackathon 121 (Dublin) we successfully demonstrated an approach for 
