@@ -20,9 +20,9 @@ author:
     email: michael.mackey@huawei.com
   -
     fullname: Benoit Claise
-    org: Huawei
+    org: Everything-Ops
     country: Belgium
-    email: benoit.claise@huawei.com
+    email: Benoit@everything-ops.net
   -
     fullname: Thomas Graf
     org: Swisscom
